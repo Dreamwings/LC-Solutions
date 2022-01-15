@@ -6,16 +6,7 @@ class Solution(object):
         :rtype: bool
         """
         
-        ## S3:
         
-        d = {c:i for i, c in enumerate(order)}
-        
-        a = [[d[c] for c in word] for word in words]
-        
-        return a == sorted(a)
-        
-        
-        """
         ## S2: faster than S1
         
         d = {c:i for i, c in enumerate(order)}
@@ -38,6 +29,17 @@ class Solution(object):
                 return False
         
         return True
+        
+        
+        """
+        ## S3:
+        
+        d = {c:i for i, c in enumerate(order)}
+        
+        a = [[d[c] for c in word] for word in words]
+        
+        return a == sorted(a)
+        
         
         
         
