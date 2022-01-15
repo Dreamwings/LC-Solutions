@@ -1,0 +1,29 @@
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+        
+        ## S1:
+        
+        def comp(a, b):
+            i = 0
+            while i < len(a) and i < len(b):
+                if order.index(a[i]) < order.index(b[i]):
+                    return True
+                elif order.index(a[i]) > order.index(b[i]):
+                    return False
+                else:
+                    i += 1
+            
+            if not a[i:]: return True
+            else: return False
+        
+        for a, b in zip(words[:-1], words[1:]):
+            if not comp(a, b):
+                return False
+        
+        return True
+        
