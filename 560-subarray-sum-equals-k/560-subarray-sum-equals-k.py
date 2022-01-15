@@ -16,7 +16,8 @@ class Solution(object):
         
         for x in nums:
             s += x
-            res += pre[s - k]
+            if s - k in pre:
+                res += pre[s - k]
             pre[s] += 1
         
         return res
