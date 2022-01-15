@@ -6,6 +6,31 @@ class Solution(object):
         :rtype: bool
         """
         
+        ## S2: 
+        
+        d = {c:i for i, c in enumerate(order)}
+        
+        def comp(a, b):
+            i = 0
+            while i < len(a) and i < len(b):
+                if d[a[i]] < d[b[i]]:
+                    return True
+                elif d[a[i]] > d[b[i]]:
+                    return False
+                else:
+                    i += 1
+            
+            if not a[i:]: return True
+            else: return False
+        
+        for a, b in zip(words[:-1], words[1:]):
+            if not comp(a, b):
+                return False
+        
+        return True
+        
+        
+        """
         ## S1:
         
         def comp(a, b):
@@ -26,4 +51,4 @@ class Solution(object):
                 return False
         
         return True
-        
+        """
