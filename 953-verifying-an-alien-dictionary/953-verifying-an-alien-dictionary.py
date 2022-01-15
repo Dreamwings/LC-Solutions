@@ -6,7 +6,17 @@ class Solution(object):
         :rtype: bool
         """
         
-        ## S2: 
+        ## S3:
+        
+        d = {c:i for i, c in enumerate(order)}
+        
+        a = [[d[c] for c in word] for word in words]
+        
+        return a == sorted(a)
+        
+        
+        """
+        ## S2: faster than S1
         
         d = {c:i for i, c in enumerate(order)}
         
@@ -30,7 +40,7 @@ class Solution(object):
         return True
         
         
-        """
+        
         ## S1:
         
         def comp(a, b):
