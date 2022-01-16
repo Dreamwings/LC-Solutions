@@ -1,6 +1,6 @@
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        """
+        
         res = [0] * n
         stack = [] # store function id
         prev = 0
@@ -46,4 +46,4 @@ class Solution:
         
         return res
     
-        
+        """
