@@ -6,6 +6,7 @@ class Solution:
         def dfs(pos, path):
             if pos == n:
                 res.append(' '.join(path))
+                return
                 
             for i in range(pos + 1, n + 1):
                 if s[pos : i] in words:
