@@ -12,12 +12,12 @@ class Solution:
             elif c in '+-*/':
                 if pre_op == '+':
                     stack.append(v)
-                if pre_op == '-':
+                elif pre_op == '-':
                     stack.append(-v)
-                if pre_op == '*':
+                elif pre_op == '*':
                     x = stack.pop()
                     stack.append(x * v)
-                if pre_op == '/':
+                elif pre_op == '/':
                     x = stack.pop()
                     stack.append(int(x/v))
                 v, pre_op = 0, c
