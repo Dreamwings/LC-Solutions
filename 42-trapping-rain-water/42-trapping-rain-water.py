@@ -15,7 +15,8 @@ class Solution(object):
         
         while i < j:
             h = min(l, r)
-            if l == h: # when l <= r
+            # if l == h: # when l <= r
+            if l <= r: # when l == h
                 res += max(0, h - height[i])
                 i += 1
                 l = max(l, height[i])
