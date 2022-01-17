@@ -12,8 +12,10 @@ class BSTIterator(object):
         """
         :type root: TreeNode
         """
-        self.data = deque()
-        self.inorder(root)  # initialize
+        self.data = []
+        self.inorder(root)
+        self.i = 0
+        self.n = len(self.data)
     
     def inorder(self, node):
         if node:
@@ -28,7 +30,8 @@ class BSTIterator(object):
         :rtype: int
         """
         if self.hasNext:
-            return self.data.popleft()
+            self.i += 1
+            return self.data[self.i-1]
         
 
     def hasNext(self):
@@ -36,7 +39,7 @@ class BSTIterator(object):
         @return whether we have a next smallest number
         :rtype: bool
         """
-        return len(self.data) > 0
+        return self.i < self.n
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
