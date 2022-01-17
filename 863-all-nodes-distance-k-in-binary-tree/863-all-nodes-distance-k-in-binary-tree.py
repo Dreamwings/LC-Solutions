@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution(object):
-    def distanceK(self, root, target, K):
+    def distanceK(self, root, target, k):
         """
         :type root: TreeNode
         :type target: TreeNode
@@ -67,7 +67,7 @@ class Solution(object):
                 dfs(p[node.val], k - 1)
             
         res, seen = [], set()
-        dfs(target, K)
+        dfs(target, k)
         
         return res
         
@@ -96,7 +96,7 @@ class Solution(object):
         seen = set([target.val])
         cur = [target.val]
         
-        for _ in range(K):
+        for _ in range(k):
             nxt = []
             for y in cur:
                 for z in graph[y]:
