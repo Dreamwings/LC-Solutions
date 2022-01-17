@@ -1,11 +1,10 @@
-class Solution(object):
-    def trap(self, height):
-        """
-        :type height: List[int]
-        :rtype: int
-        """
+class Solution:
+    def trap(self, height: List[int]) -> int:
         
-        ## Solution 1: Two Pointers
+        
+        ## S1: Two Pointers
+        ## every time move the pointer with a lower bound
+        
         n = len(height)
         if n <= 2: return 0
         
@@ -25,6 +24,3 @@ class Solution(object):
                 r = max(r, height[j])
                 
         return res
-            
-        
-        
