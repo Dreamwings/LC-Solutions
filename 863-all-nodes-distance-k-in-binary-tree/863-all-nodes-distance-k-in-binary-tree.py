@@ -1,12 +1,20 @@
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
-class Solution:
-    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+class Solution(object):
+    def distanceK(self, root, target, K):
+        """
+        :type root: TreeNode
+        :type target: TreeNode
+        :type K: int
+        :rtype: List[int]
+        """
+        
+        from collections import defaultdict
         
         ## S1: DFS + DFS Backtracking
         ## find parent nodes and store in dict, then do DFS backtracking
@@ -14,14 +22,14 @@ class Solution:
         if not root: return []
         
         # dict for parent nodes, key: value = node.val : parent
-        parents = collections.defaultdict(TreeNode)
+        p = collections.defaultdict(TreeNode)
         
         def find_parent(node):
             if node.left:
-                parents[node.left.val] = node
+                p[node.left.val] = node
                 find_parent(node.left)
             if node.right:
-                parents[node.right.val] = node
+                p[node.right.val] = node
                 find_parent(node.right)
         
         find_parent(root)
@@ -41,66 +49,63 @@ class Solution:
 #             # look at parent
 #             if cur_node.val in parents and parents[cur_node.val] != pre_node:
 #                 dfs(parents[cur_node.val], cur_node, k - 1)
-        
 #         res = []
 #         dfs(target, None, k)
         
-        def dfs(cur, k):
-            seen.add(cur)
+        def dfs(node, k):
             if k == 0:
-                res.append(cur.val)
+                res.append(node.val)
                 return
             
-            if cur.left and cur.left not in seen:
-                dfs(cur.left, k - 1)
+            seen.add(node)
             
-            if cur.right and cur.right not in seen:
-                dfs(cur.right, k - 1)
+            if node.left and node.left not in seen:
+                dfs(node.left, k - 1)
+            if node.right and node.right not in seen:
+                dfs(node.right, k - 1)
+            if node.val in p and p[node.val] not in seen:
+                dfs(p[node.val], k - 1)
             
-            if cur.val in parents and parents[cur.val] not in seen:
-                dfs(parents[cur.val], k - 1)
+        res, seen = [], set()
+        dfs(target, K)
         
-        res = []
-        seen = set()
-        dfs(target, k)
         return res
         
         
         """
         ## S2: DFS + BFS
         
-        if not root: return []
+        if root is None: return []
         
-        # use DFS to build graph
-        graph = collections.defaultdict(list)
+        graph = defaultdict(list)
+        ## DFS to build graph
+        q = [root]
         
-        def dfs(root):
-            if root.left:
-                graph[root.val].append(root.left.val)
-                graph[root.left.val].append(root.val)
-                dfs(root.left)
-            if root.right:
-                graph[root.val].append(root.right.val)
-                graph[root.right.val].append(root.val)
-                dfs(root.right)
+        while q:
+            node = q.pop()
+            if node.left:
+                graph[node.val].append(node.left.val)
+                graph[node.left.val].append(node.val)
+                q.append(node.left)
+            if node.right:
+                graph[node.val].append(node.right.val)
+                graph[node.right.val].append(node.val)
+                q.append(node.right)
         
-        dfs(root)
+        ## BFS to traverse
+        seen = set([target.val])
+        cur = [target.val]
         
-        # do BFS to find nodes with dist of K
-        seen = set()
-        q = [target.val]
-        seen.add(target.val)
-        
-        for _ in range(k):
+        for _ in range(K):
             nxt = []
-            for x in q:
-                for y in graph[x]:
-                    if y not in seen:
-                        nxt.append(y)
-                        seen.add(y)
-            q = nxt
+            for y in cur:
+                for z in graph[y]:
+                    if z not in seen:
+                        seen.add(z)
+                        nxt.append(z)
+            cur = nxt
         
-        return q
+        return cur
         """
         
         
