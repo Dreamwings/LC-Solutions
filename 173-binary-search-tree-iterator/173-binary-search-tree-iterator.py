@@ -1,45 +1,31 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-from collections import deque
-class BSTIterator(object):
-
-    def __init__(self, root):
-        """
-        :type root: TreeNode
-        """
-        self.data = []
-        self.inorder(root)
-        self.i = 0
-        self.n = len(self.data)
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class BSTIterator:
     
-    def inorder(self, node):
+    from collections import deque
+    
+    def __init__(self, root: Optional[TreeNode]):
+        self.data = deque()
+        self.in_order(root)
+        
+    def in_order(self, node):
         if node:
-            self.inorder(node.left)
+            self.in_order(node.left)
             self.data.append(node.val)
-            self.inorder(node.right)
-        
+            self.in_order(node.right)
 
-    def next(self):
-        """
-        @return the next smallest number
-        :rtype: int
-        """
+    def next(self) -> int:
         if self.hasNext:
-            self.i += 1
-            return self.data[self.i-1]
+            return self.data.popleft()
+            
         
 
-    def hasNext(self):
-        """
-        @return whether we have a next smallest number
-        :rtype: bool
-        """
-        return self.i < self.n
+    def hasNext(self) -> bool:
+        return len(self.data) > 0
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
