@@ -16,11 +16,11 @@ class Solution(object):
                 d[i + j].append(mat[i][j]) 
         
         res = []
-        for k, v in d.items():
-            if k & 1 == 0:  # k even
-                res += v[::-1]
+        for k in sorted(d):
+            if k & 1:
+                res += d[k]
             else:
-                res += v
+                res += d[k][::-1]
         
         return res
         
