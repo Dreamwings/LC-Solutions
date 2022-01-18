@@ -12,24 +12,23 @@ class Solution:
              80: 'Eighty', 90: 'Ninety', 100: 'Hundred',
              1000: 'Thousand', 1e6: 'Million', 1e9: 'Billion'}
         
-        keys = [10**9, 10**6, 10**3, 100, 90, 80, 70, 60, 50, 40, 30, 20]
+        dr = [10**9, 10**6, 1000, 100, 90, 80, 70, 60, 50, 40, 30, 20]
         
         def f(n):
             if n <= 20:
                 return d[n]
             
-            for x in keys:
+            for x in dr:
                 q, r = n // x, n % x
-                # print(x, q, r)
                 if not q:
                     continue
-                s1, s2 = '', ''
+                
+                a, b = '', ''
                 if x >= 100:
-                    s1 = f(q) + ' '
+                    a = f(q) + ' '
                 if r:
-                    s2 = ' ' + f(r)
-            
-                return s1 + d[x] + s2
+                    b = ' ' + f(r)
+                return a + d[x] + b
         
         return f(num)
        
