@@ -1,8 +1,15 @@
-class Solution:
-    def numberToWords(self, num: int) -> str:
-        
+class Solution(object):
+    def numberToWords(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        """
+        ## S0:
+        from num2words import num2words
+        return num2words(num)
+        """
         ## S2:
-        ## https://leetcode.com/problems/integer-to-english-words/discuss/164087/Python-100-and-Easy-To-Understand-Solution
         
         d = {0: 'Zero', 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 
              6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine', 10: 'Ten',
@@ -31,7 +38,7 @@ class Solution:
                 return a + d[x] + b
         
         return f(num)
-       
+        
         """
         ## S1:
         
@@ -43,24 +50,22 @@ class Solution:
         thsd = ["","Thousand","Million","Billion","Trillion"]
         
         def helper(x):
-            # return an array of English words
             if x < 20:
                 return lt20[x-1:x]
             if x < 100:
-                a, b = x // 10, x % 10
-                return tens[a-2:a-1] + helper(b)
+                q, r = x // 10, x % 10
+                return [tens[q-2]] + helper(r)
             if x < 1000:
-                a, b = x // 100, x % 100
-                return [lt20[a-1]] + ['Hundred'] + helper(b)
+                q, r = x // 100, x % 100
+                return [lt20[q-1]] + ['Hundred'] + helper(r)
             
-            for i, v in enumerate(thsd):
-                if x < 1000 ** (i + 1):
-                    t = 1000 ** i
-                    a, b = x // t, x % t
-                    return helper(a) + [v] + helper(b)
-         
+            for p, w in enumerate(thsd):
+                if x < 1000 ** (p + 1):
+                    t = 1000 ** p
+                    q, r = x // t, x % t
+                    return helper(q) + [w] + helper(r)
+        
         if num == 0: return 'Zero'
-        res = helper(num)
-        return ' '.join(res)
-        """    
-       
+        return ' '.join(helper(num))
+        
+        """
