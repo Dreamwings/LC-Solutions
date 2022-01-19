@@ -1,15 +1,21 @@
-class Solution:
-    def knightDialer(self, n: int) -> int:
+class Solution(object):
+    def knightDialer(self, n):
+        """
+        :type N: int
+        :rtype: int
+        """
         
         ## S2:
         ## Time: O(logN)
         ## Space: O(1)
         
         import numpy as np
-        
-        import numpy as np
-        
         K = 10**9 + 7
+        ## M[i][j] stands for number of ways starting from i and ending at j with
+        ## a single step
+        ## Let M_k stands for M^k (the product of k M's)
+        ## M_k[i][j] stands for number of ways starting from i and ending at j with
+        ## (k - 1) steps
         M = np.matrix([[0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
                        [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
                        [0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
@@ -32,8 +38,9 @@ class Solution:
             n >>= 1
             
         return np.sum(x) % K
-        
+    
         """
+        
         ## S1:
         ## Time: O(N)
         ## Space: O(1)
@@ -57,8 +64,16 @@ class Solution:
             x = y
         
         return sum(x) % K
-        
         """
-        
+        # d = {0: [4, 6],
+        #      1: [6, 8],
+        #      2: [7, 9],
+        #      3: [4, 8],
+        #      4: [0, 3, 9],
+        #      5: [],
+        #      6: [0, 1, 7],
+        #      7: [2, 6],
+        #      8: [1, 3],
+        #      9: [2, 4]}
         
         
