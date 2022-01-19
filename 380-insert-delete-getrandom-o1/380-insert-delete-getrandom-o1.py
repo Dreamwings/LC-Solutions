@@ -16,7 +16,6 @@ class RandomizedSet(object):
         self.v.append(val)
         return True
         
-
     def remove(self, val):
         """
         :type val: int
