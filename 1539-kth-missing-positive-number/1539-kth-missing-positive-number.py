@@ -11,9 +11,8 @@ class Solution(object):
         
         ## by arr[i], there are arr[i] - (i+1) missing numbers
         ## let m = arr[i] - (i+1), there are m missing numbers before arr[i]
-        ## so we need to find x to insert at index i, so that x - (i+1) == k
-        ## that is x = (i+1) + k
-        ## to find x, we need to find the place to insert it
+        ## so we need to find the j-th index, so that before arr[j] it missing m1 numbers
+        ## at arr[j+1], it missing m2 numbers, k meet m1 <= k < m2
         
         lo, hi = 0, len(arr) - 1
         
