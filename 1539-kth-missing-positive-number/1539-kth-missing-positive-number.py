@@ -10,9 +10,10 @@ class Solution(object):
         ## https://leetcode-cn.com/problems/kth-missing-positive-number/solution/di-k-ge-que-shi-de-zheng-zheng-shu-by-leetcode-sol/
         
         ## by arr[i], there are arr[i] - (i+1) missing numbers
-        ## because arr starting count from 1, while i starting from 0
-        ## so we just need to find at which place, arr[i] - (i+1) == k
-        ## that is the k-th integer is arr[i] = (i + 1) + k
+        ## let m = arr[i] - (i+1), there are m missing numbers before arr[i]
+        ## so we need to find x to insert at index i, so that x - (i+1) == k
+        ## that is x = (i+1) + k
+        ## to find x, we need to find the place to insert it
         
         lo, hi = 0, len(arr) - 1
         
@@ -24,4 +25,9 @@ class Solution(object):
                 hi = m - 1
         
         return lo + k
+        # should return this:
+        # arr[lo-1] + (k - (arr[lo-1] - (lo -1 + 1)))
+        # = arr[lo-1] + k - arr[lo-1] + lo
+        # = lo + k
+        
         
