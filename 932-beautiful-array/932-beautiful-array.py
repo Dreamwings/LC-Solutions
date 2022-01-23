@@ -1,30 +1,29 @@
-class Solution:
-    def beautifulArray(self, n: int) -> List[int]:
-        
+class Solution(object):
+    def beautifulArray(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
         ## https://leetcode.com/problems/beautiful-array/discuss/1368125/Detailed-Explanation-with-Diagrams.-A-Collection-of-Ideas-from-Multiple-Posts.-Python3
         
         """
-        ## S1:
-        ## Time: O(NlogN)
-        ## Space: O(NlogN)
+        ## S1: Iterative
         
         res = [1]
         
         while len(res) < n:
-            odd, even = [], []
-            for x in res:
-                odd.append(2 * x - 1)
-                even.append(2 * x)
+            odd = [2 * x - 1 for x in res]
+            even = [2 * x for x in res]
             res = odd + even
-        
+            
+        # print(res)
         return [x for x in res if x <= n]
         """
         
-        ## S2:
+        ## S2: DFS
         ## https://leetcode-cn.com/problems/beautiful-array/solution/piao-liang-shu-zu-by-leetcode/
         ## Time: O(NlogN)
         ## Space: O(NlogN)
-        
         
         d = {1: [1]}
         
@@ -36,3 +35,5 @@ class Solution:
             return d[n]
         
         return dfs(n)
+        
+        
