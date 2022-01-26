@@ -21,7 +21,8 @@ class Solution(object):
             cnt = 0
             while i >= 0 and j < n:
                 if matrix[i][j] <= mid:
-                    cnt += i + 1 # all num from matrix[0][j] to matrix[i][j] in column j is not larger than mid
+                    cnt += i + 1 # ***** IMPORTANT!!! *****
+                    # all num from matrix[0][j] to matrix[i][j] in column j is not larger than mid
                     j += 1       # can move to the right of the same row
                 else:
                     i -= 1       # can move to the up row, but the same column
