@@ -1,15 +1,12 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def lcaDeepestLeaves(self, root):
-        """
-        :type root: TreeNode
-        :rtype: TreeNode
-        """
+class Solution:
+    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
         ## S1: DFS
         ## Time O(N) for one pass
         ## Space O(H) for recursion management
@@ -30,5 +27,3 @@ class Solution(object):
         
         res, _ = dfs(root)
         return res
-        
-        
