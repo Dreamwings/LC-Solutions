@@ -10,8 +10,8 @@ class Solution:
             elif c == '+' or c == '-':
                 res += v * sign
                 v = 0
-                sign = 1 if c == '+' else -1
-                # sign = [-1, 1][c == '+']
+                # sign = 1 if c == '+' else -1
+                sign = [-1, 1][c == '+']
             elif c == '(':
                 stack.append(res)
                 stack.append(sign)
