@@ -8,6 +8,25 @@ class Solution(object):
         
         from collections import Counter
         
+        ## S2:
+        ## Time: O(N)
+            
+        d = Counter(target)
+        
+        for x in arr:
+            d[x] -= 1
+            if d[x] < 0:
+                return False
+        
+        return True
+    
+        """
+        ## S1: 
+        ## Time: O(N*logN)
+        
+        return sorted(arr) == sorted(target)
+        
+        
         ## S3:
         ## Time: O(N)
         
@@ -20,25 +39,6 @@ class Solution(object):
             elif da[k] != v:
                 return False
                 
-        return True
-    
-        """
-        ## S1: 
-        ## Time: O(N*logN)
-        
-        return sorted(arr) == sorted(target)
-        
-        
-        ## S2:
-        ## Time: O(N)
-            
-        d = Counter(target)
-        
-        for x in arr:
-            d[x] -= 1
-            if d[x] < 0:
-                return False
-        
         return True
         
         """
