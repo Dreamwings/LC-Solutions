@@ -5,6 +5,7 @@ class Solution:
         res = [[0] * n for _ in range(m)]
         
         def smoother(i, j):
+            # find the neighbors of (i, j) and sum the vals
             s, cnt = 0, 0
             for x in (i-1, i, i+1):
                 for y in (j-1, j, j+1):
