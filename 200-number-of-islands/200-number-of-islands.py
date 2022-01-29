@@ -1,5 +1,9 @@
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
         
         
         ## Solution 1: DFS
