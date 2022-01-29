@@ -1,5 +1,9 @@
-class Solution:
-    def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
+class Solution(object):
+    def imageSmoother(self, img):
+        """
+        :type img: List[List[int]]
+        :rtype: List[List[int]]
+        """
         
         m, n = len(img), len(img[0])
         res = [[0] * n for _ in range(m)]
@@ -19,3 +23,5 @@ class Solution:
                 res[i][j] = smoother(i, j)
         
         return res
+                        
+        
