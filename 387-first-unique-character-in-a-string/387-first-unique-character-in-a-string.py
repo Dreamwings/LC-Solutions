@@ -11,14 +11,12 @@ class Solution(object):
         ## S2:
         
         d = Counter(s)
-        res = -1
         
         for i, c in enumerate(s):
             if d[c] == 1:
-                res = i
-                break
+                return i
                 
-        return res
+        return -1
         
         """
         ## S1: faster
