@@ -7,6 +7,19 @@ class Solution(object):
         
         from collections import defaultdict, Counter
         
+        
+        ## S2:
+        
+        d = Counter(s)
+        res = -1
+        
+        for i, c in enumerate(s):
+            if d[c] == 1:
+                res = i
+                break
+                
+        return res
+        
         """
         ## S1: faster
         
@@ -23,26 +36,7 @@ class Solution(object):
         return min(d.values())
         
         
-        ## S2:
-        
-        d = Counter(s)
-        res = float('inf')
-        
-        for i, c in enumerate(s):
-            if d[c] == 1:
-                res = min(res, i)
-                
-        if res == float('inf'): return -1
-        else: return res
         """
         
-        d = Counter(s)
-        res = -1
         
-        for i, c in enumerate(s):
-            if d[c] == 1:
-                res = i
-                break
-                
-        return res
         
