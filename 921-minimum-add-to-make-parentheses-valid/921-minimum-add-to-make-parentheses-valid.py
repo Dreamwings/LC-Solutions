@@ -1,37 +1,19 @@
-class Solution:
-    def minAddToMakeValid(self, s: str) -> int:
+class Solution(object):
+    def minAddToMakeValid(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
         
-        ## S2: 
-        
+        if S == '': return 0
         missing_l, missing_r = 0, 0
         
-        for c in s:
+        for c in S:
             if c == '(':
                 missing_r += 1
-            elif c == ')':
-                if missing_r > 0:
-                    missing_r -= 1
-                else:
-                    missing_l += 1
+            elif missing_r > 0:
+                missing_r -= 1
+            else:
+                missing_l += 1
         
         return missing_l + missing_r
-        
-        """
-        ## S1:
-        
-        cnt, res = 0, 0
-        
-        for c in s:
-            if c == '(':
-                cnt += 1
-            else:
-                cnt -= 1
-            if cnt < 0:
-                res += 1
-                cnt = 0
-                
-        return res + cnt
-        
-        
-        """
-        
