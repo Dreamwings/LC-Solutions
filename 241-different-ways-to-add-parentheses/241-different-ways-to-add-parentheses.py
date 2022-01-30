@@ -1,8 +1,13 @@
-class Solution:
-    def diffWaysToCompute(self, s: str) -> List[int]:
+class Solution(object):
+    def diffWaysToCompute(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        ## S2: Memorization:
+        ## Time: O(N), N is the number of operators in the input
         
-        ## S2:
-        
+        # use a dict to store sub expressions res
         from collections import defaultdict
         
         mem = defaultdict(list)
@@ -32,3 +37,29 @@ class Solution:
             return res
         
         return dfs(0, len(s))
+        
+        
+        """
+        ## S1: DFS (Divide and Conquer)
+        ## Time: O(N^2), N is the number of operators in the input
+        
+        if s.isdigit():
+            return [int(s)]
+        
+        res = []
+        
+        for i, c in enumerate(s):
+            if c in '+-*':
+                l_res = self.diffWaysToCompute(s[:i])
+                r_res = self.diffWaysToCompute(s[i+1:])
+                for x in l_res:
+                    for y in r_res:
+                        if c == '+':
+                            res.append(x + y)
+                        if c == '-':
+                            res.append(x - y)
+                        if c == '*':
+                            res.append(x * y)
+        
+        return res
+        """                
