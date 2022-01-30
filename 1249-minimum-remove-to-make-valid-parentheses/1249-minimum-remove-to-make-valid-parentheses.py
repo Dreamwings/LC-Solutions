@@ -1,65 +1,55 @@
-class Solution(object):
-    def minRemoveToMakeValid(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
         
         ## S1: Stack
         
-        stack = []
-        cur = '' # the substring inside current ()
-        
-        for c in s:
-            if c == '(': # start a new string or new parentheses
-                stack.append(cur)
-                cur = ''
-            elif c == ')':
-                # it means it should be like: '(cur)'
-                if stack: 
-                    # stack must not be empty because it should have '(' previously
-                    # otherwise it's not a valid one
-                    cur = stack.pop() + '(' + cur + ')'
-            else:
-                cur += c
-            # print(c, cur, stack)
-            
-        res = ''.join(stack) + cur
-        return res
-        """
-        
-        ## S2: Slow
-        
-        cnt = 0
-        res = ''
+        cur, stack = '', []
         
         for c in s:
             if c == '(':
-                res += c
-                cnt += 1
+                stack.append(cur)
+                cur = ''
             elif c == ')':
-                if cnt == 0:
-                    continue
-                else:
-                    cnt -= 1
-                    res += c
+                if stack:
+                    cur = stack.pop() + '(' + cur + ')'
             else:
-                res += c
+                cur += c
+                
+        res = ''.join(stack) + cur
+        return res
         
-        if cnt > 0:
-            tmp = res[::-1]
-            res = ''
-            i = 0
-            while cnt > 0:
-                if tmp[i] == '(':
-                    cnt -= 1
-                else:
-                    res += tmp[i]
-                i += 1
-            res += tmp[i:]
-            res = res[::-1]
+        """
+        ## S2:
+        ## Time: O(3N)
+        ## Space: O(N)
+        cnt = 0
+        h = set()
+        n = len(s)
+        
+        for i, c in enumerate(s):
+            if c == '(':
+                cnt += 1
+            if c == ')':
+                cnt -= 1
+            if cnt < 0:
+                h.add(i)
+                cnt = 0
+        cnt = 0
+        for i, c in enumerate(s[::-1]):
+            if c == ')':
+                cnt += 1
+            if c == '(':
+                cnt -= 1
+            if cnt < 0:
+                h.add(n-1-i)
+                cnt = 0
+        
+        res = ''
+        for i, c in enumerate(s):
+            if i in h:
+                continue
+            res += c
         
         return res
-                    
-        """        
+        """
         
