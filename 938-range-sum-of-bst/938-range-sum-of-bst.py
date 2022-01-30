@@ -13,24 +13,6 @@ class Solution(object):
         :type high: int
         :rtype: int
         """
-        """
-        ## S1: Recursive DFS
-        ## Time: O(N)
-        ## Space: O(N)
-        
-        res = 0
-        if not root: return res
-        
-        if low <= root.val <= high:
-            res += root.val
-        
-        l = self.rangeSumBST(root.left, low, high)
-        r = self.rangeSumBST(root.right, low, high)
-        
-        return res + l + r
-        
-        """
-        
         ## S2:  Iterative BFS
         ## Time: O(N)
         ## Space: O(N)
@@ -52,6 +34,24 @@ class Solution(object):
                 q.append(x.right)
         
         return res
+        
+        """
+        ## S1: Recursive DFS
+        ## Time: O(N)
+        ## Space: O(N)
+        
+        res = 0
+        if not root: return res
+        
+        if low <= root.val <= high:
+            res += root.val
+        
+        l = self.rangeSumBST(root.left, low, high)
+        r = self.rangeSumBST(root.right, low, high)
+        
+        return res + l + r
+        
+        """
         
         
         
