@@ -4,10 +4,9 @@ class Solution(object):
         :type words: List[str]
         :type order: str
         :rtype: bool
-        """
-        
-        
+        """        
         ## S2: faster than S1
+        ## Time: O(MN)
         
         d = {c:i for i, c in enumerate(order)}
         
@@ -29,10 +28,10 @@ class Solution(object):
                 return False
         
         return True
-        
-        
+                
         """
         ## S3:
+        ## Time: max(O(MN), O(NlogN))
         
         d = {c:i for i, c in enumerate(order)}
         
