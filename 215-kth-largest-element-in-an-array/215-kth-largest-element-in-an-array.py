@@ -7,19 +7,22 @@ class Solution(object):
         """
         from heapq import nlargest, heappush, heappop
         
-        
+        """
         ## Solution 1:
         
         return nlargest(k, nums)[-1]
         """
         
         ## Solution 2:
-        q = []
         # O(nlogk)
+        
+        q = []
+        
         for x in nums:  
             heappush(q, x)
             if len(q) > k:
                 heappop(q)
         # print(q)
         return q[0]
-        """
+        
+        
