@@ -1,35 +1,27 @@
-class MagicDictionary(object):
-    from collections import defaultdict
-    
-    def __init__(self):
-        self.d = defaultdict(set)
-        
+class MagicDictionary:
 
-    def buildDict(self, dictionary):
-        """
-        :type dictionary: List[str]
-        :rtype: None
-        """
+    def __init__(self):
+        
+        self.d = collections.defaultdict(set)
+        
+    def buildDict(self, dictionary: List[str]) -> None:
+        
         for word in dictionary:
             for i in range(len(word)):
                 w = word[:i] + '*' + word[i+1:]
                 self.d[w].add(word)
         
 
-    def search(self, searchWord):
-        """
-        :type searchWord: str
-        :rtype: bool
-        """
+    def search(self, searchWord: str) -> bool:
+        
         for i in range(len(searchWord)):
-            x = searchWord[:i] + '*' + searchWord[i+1:]
-            if x in self.d:
-                if searchWord not in self.d[x]:
+            w = searchWord[:i] + '*' + searchWord[i+1:]
+            if w in self.d:
+                if searchWord not in self.d[w]:
                     return True
-                elif len(self.d[x]) > 1:
+                elif len(self.d[w]) > 1:
                     return True
         return False
-
 
 # Your MagicDictionary object will be instantiated and called as such:
 # obj = MagicDictionary()
