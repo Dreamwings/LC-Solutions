@@ -7,7 +7,7 @@ class Solution(object):
         """
         from heapq import nlargest, heappush, heappop
         
-        """
+        
         ## Solution 1:
         
         return nlargest(k, nums)[-1]
@@ -25,4 +25,4 @@ class Solution(object):
         # print(q)
         return q[0]
         
-        
+        """
