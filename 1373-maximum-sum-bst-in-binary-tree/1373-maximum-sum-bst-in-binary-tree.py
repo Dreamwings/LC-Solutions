@@ -13,10 +13,10 @@ class Solution(object):
         
         ## S1: DFS
         ## Time: O(N)
-        ## Space: O(H)
+        ## Space: O(logN) or O(H)
         
         MIN, MAX = float('-inf'), float('inf')
-        self.res = 0
+        self.res = 0  # since we can only return non-negative res, here not use MIN
         
         # DFS function to return the min val of tree, max val of tree, sum of keys
         def dfs(node):
