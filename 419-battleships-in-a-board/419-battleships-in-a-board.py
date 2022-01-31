@@ -5,6 +5,10 @@ class Solution(object):
         :rtype: int
         """
         
+        ## S1: 
+        ## Time: O(MN)
+        ## count only the number of heads, the top most 'X', or the left most 'X'
+        
         res = 0
         m, n = len(board), len(board[0])
         
