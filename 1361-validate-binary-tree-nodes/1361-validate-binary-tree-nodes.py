@@ -22,7 +22,10 @@ class Solution(object):
         for k, v in indeg.items():
             if v == 0:
                 q.append(k)
-                break
+                
+        if len(q) == 0 or len(q) > 1: 
+            # there is a cycle, or two roots
+            return False
         
         while q:
             x = q.popleft()
