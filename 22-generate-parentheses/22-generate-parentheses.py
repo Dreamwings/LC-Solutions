@@ -8,18 +8,18 @@ class Solution(object):
         ## S 1: DFS, also BackTracking
         ## https://leetcode-cn.com/problems/generate-parentheses/solution/gua-hao-sheng-cheng-by-leetcode-solution/
         
-        def dfs(l, r, path, res):
+        def dfs(l, r, path):
             if l > r: return
             if not l and not r:
                 res.append(path)
                 return
             if l:
-                dfs(l-1, r, path + '(', res)
+                dfs(l - 1, r, path + '(')
             if r:
-                dfs(l, r-1, path + ')', res)
-        
+                dfs(l, r - 1, path + ')')
+                
         res = []
-        dfs(n, n, '', res)
+        dfs(n, n, '')
         return res
     
         """
