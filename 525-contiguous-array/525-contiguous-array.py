@@ -16,6 +16,7 @@ class Solution(object):
             # cnt is the number difference between 1 and 0
             # if we find the same value of cnt previously at j, it means:
             # nums[:j+1] and nums[:i+1] has the same cnt value
+            # then nums[j+1:i+1] has the same numbers of 1 and 0
             if cnt in d:
                 j = d[cnt]
                 res = max(res, i - j)
