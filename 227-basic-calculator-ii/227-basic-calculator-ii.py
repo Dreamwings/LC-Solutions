@@ -18,8 +18,7 @@ class Solution(object):
                     stack.append(-v)
                 elif pre_op == '*':
                     x = stack.pop()
-                    y = v
-                    stack.append(x * y)
+                    stack.append(x * v)
                 elif pre_op == '/':
                     x = stack.pop()
                     # The following is only for Python 2
