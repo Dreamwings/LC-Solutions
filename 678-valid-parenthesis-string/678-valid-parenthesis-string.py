@@ -4,7 +4,29 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        ## S2: Greedy
+        ## Time: O(N)
+        ## Space: O(1)
         
+        # let two var to record scores: if '(', both += 1; if ')', both -= 1; if '*', left -= 1 and right += 1
+        l = r = 0
+        
+        for c in s:
+            if c == '(':
+                l += 1
+                r += 1
+            elif c == ')':
+                l -= 1
+                r -= 1
+            else:
+                l -= 1
+                r += 1
+            l = max(0, l)
+            if r < 0: return False
+        
+        return l == 0
+        
+        """
         ## S1: Stack
         ## Time: O(N)
         ## Space: O(N)
@@ -34,4 +56,4 @@ class Solution(object):
                 star_s.pop()
                 
         return True    
-        
+        """
