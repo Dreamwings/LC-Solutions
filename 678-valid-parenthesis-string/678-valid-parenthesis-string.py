@@ -22,7 +22,8 @@ class Solution(object):
                 l -= 1
                 r += 1
             l = max(0, l)
-            if r < 0: return False
+            if r < 0:  # too many ')'
+                return False
         
         return l == 0
         
