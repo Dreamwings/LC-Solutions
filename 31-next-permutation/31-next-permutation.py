@@ -1,14 +1,9 @@
-class Solution:
-    def nextPermutation(self, nums: List[int]) -> None:
+class Solution(object):
+    def nextPermutation(self, nums):
         """
-        Do not return anything, modify nums in-place instead.
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
         """
-        
-        ## use the example :[1,2,3,4,5,5,5,4,3,2,1]
-        ## how ?     step 1:[1,2,3,5,5,5,4,4,3,2,1] from swap nums[3] = 4 and nums[6] = 5
-        ##           step 2:[1,2,3,5] + list(reversed([5,5,4,4,3,2,1]]))
-        ## next permutation:[1,2,3,5,1,2,3,4,4,5,5]
-        
         
         n = len(nums)
         i = j = n - 1
@@ -16,21 +11,16 @@ class Solution:
         while i and nums[i-1] >= nums[i]:
             i -= 1
         
-        if i == 0:  # the array is non-increasing
+        if i == 0:
             nums.reverse()
             return
         
         k = i - 1
-        while nums[j] <= nums[k]:
+        while nums[k] >= nums[j]:
             j -= 1
             
         nums[k], nums[j] = nums[j], nums[k]
-        # print(nums)
-        l, r = k + 1, n - 1
-        # while l < r:
-        #     nums[l], nums[r] = nums[r], nums[l]
-        #     l += 1
-        #     r -= 1
-        nums[l:] = nums[l:][::-1]
+        
+        nums[i:] = nums[i:][::-1]
         
         
