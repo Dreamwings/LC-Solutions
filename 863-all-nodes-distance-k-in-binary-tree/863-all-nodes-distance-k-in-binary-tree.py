@@ -22,7 +22,7 @@ class Solution(object):
         if not root: return []
         
         # dict for parent nodes, key: value = node.val : parent
-        p = collections.defaultdict(TreeNode)
+        p = defaultdict(TreeNode)
         
         def find_parent(node):
             if node.left:
