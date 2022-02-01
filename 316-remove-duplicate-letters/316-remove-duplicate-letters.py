@@ -4,15 +4,15 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        """
+        
         ## S1: Greedy
         ## Time: O(N)
         ## https://leetcode-cn.com/problems/remove-duplicate-letters/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-4/
         ## https://leetcode.com/problems/remove-duplicate-letters/discuss/889477/Python-O(n)-greedy-with-stack-explained
         
         d = {c: i for i, c in enumerate(s)}  # store the last location of each letter
-        stack = []  # non-decreasing stack to store smaller letters of the left
-        seen = set()
+        stack = []    # non-decreasing stack to store smaller letters of the left
+        seen = set()  # store ch in stack
         
         for i, c in enumerate(s):
             if c in seen: 
@@ -45,4 +45,4 @@ class Solution(object):
             d[c] -= 1
         
         return ''.join(stack)
-        
+        """
