@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: str
         """
         
-        ## S1: Greedy
+        ## S1: Greedy, Monotone Stack
         ## Time: O(N)
         ## https://leetcode-cn.com/problems/remove-duplicate-letters/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-4/
         ## https://leetcode.com/problems/remove-duplicate-letters/discuss/889477/Python-O(n)-greedy-with-stack-explained
