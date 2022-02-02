@@ -5,16 +5,37 @@ class Solution(object):
         :rtype: int
         """
         
+        ## S2:
+        ## Time: O(log(N/2))
+        
         n = len(nums)
         l, r = 0, n - 1
         
         while l <= r:
             m = (l + r) >> 1
-            m_odd = m & 1
+            if m & 1:  # m odd, left side has even number of vals
+                m -= 1
+            if m + 1 < n and nums[m] == nums[m+1]:
+                l = m + 2
+            else:
+                r = m - 1
+                
+        return nums[l]
+        
+        """
+        ## S1:
+         ## Time: O(log(N))
+         
+        n = len(nums)
+        l, r = 0, n - 1
+        
+        while l <= r:
+            m = (l + r) >> 1
+            m_odd = m & 1  # m odd, left side has even number of vals
             # print(l, r, m)
             if nums[m] == nums[m-1]:
                 # Case 1: [1, 1, 3, 3, 4, 5, 5]
-                if m_odd:  # m odd, left side has even number of vals
+                if m_odd:  
                     l = m + 1
                 # Case 2: [1, 1, 2, 3, 3, 5, 5, 7, 7]
                 else:
@@ -30,3 +51,4 @@ class Solution(object):
                 return nums[m]
             
         return nums[m]
+        """
