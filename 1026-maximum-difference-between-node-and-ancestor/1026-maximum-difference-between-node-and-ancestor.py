@@ -16,7 +16,7 @@ class Solution(object):
         self.res = 0
         
         def dfs(node):
-            # return the max and min value in the tree with root at node
+            # return the max and min value for the subtree at node
             if not node:
                 return float('-inf'), float('inf')
             
