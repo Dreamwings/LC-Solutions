@@ -24,7 +24,7 @@ class Solution(object):
         
         """
         ## S1:
-         ## Time: O(log(N))
+        ## Time: O(log(N))
          
         n = len(nums)
         l, r = 0, n - 1
