@@ -1,32 +1,39 @@
 """
 # Definition for a Node.
-class Node:
-    def __init__(self, val = 0, neighbors = None):
+class Node(object):
+    def __init__(self, val = 0, neighbors = []):
         self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+        self.neighbors = neighbors
 """
 
-class Solution:
-    def cloneGraph(self, node: 'Node') -> 'Node':
+
+class Solution(object):
+    def cloneGraph(self, node):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        from collections import defaultdict
+        
         
         if not node: return None
         
-        d = collections.defaultdict(Node)
-        # d = collections.defaultdict(lambda: Node(0, None))  # both ways are good!
-        root = Node(node.val)
+        ## Copy reference node first with empty neighbors
+        d = defaultdict(lambda: Node(0, None))
+        root = Node(node.val, [])
         d[node.val] = root
         q = [node]
         
         while q:
             x = q.pop()
-            x_c = d[x.val]
+            xc = d[x.val]
             
             for y in x.neighbors:
                 if y.val not in d:
                     q.append(y)
                     d[y.val] = Node(y.val, [])
                 
-                y_c = d[y.val]
-                x_c.neighbors.append(y_c)
+                yc = d[y.val]
+                xc.neighbors.append(yc)
         
         return root
