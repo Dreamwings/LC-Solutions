@@ -1,7 +1,15 @@
-class Solution:
-    def swimInWater(self, grid: List[List[int]]) -> int:
+class Solution(object):
+    def swimInWater(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
         
-        from heapq import heappush, heappop
+        from heapq import heapify, heappush, heappop
+        
+        
+        ## S1: BFS with Heapq
+        ## Time: O(N^2*logN)
         
         n = len(grid)
         if n == 1: return grid[0][0]
@@ -24,4 +32,7 @@ class Solution:
                     heappush(hq, (grid[i][j], i, j))
                     grid[i][j] = -1
                     
+        
+        
+        
         
