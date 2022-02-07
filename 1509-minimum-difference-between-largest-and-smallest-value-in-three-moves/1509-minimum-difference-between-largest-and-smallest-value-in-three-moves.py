@@ -5,6 +5,30 @@ class Solution(object):
         :rtype: int
         """
         
+        ## S2: Heapq
+        ## Time: O(NlogK)
+        ## Space: O(1)
+        
+        from heapq import nlargest, nsmallest
+        
+        n = len(nums)
+        if n <= 4: return 0
+        
+        a = nlargest(4, nums)
+        b = nsmallest(4, nums)
+        res = float('inf')
+        
+        for x, y in zip(a[::-1], b):
+            res = min(res, x - y)
+        
+        return res
+        
+        """
+        
+        ## S1: Sorting
+        ## Time: O(NlogN)
+        ## Space: O(1)
+        
         # remove 3 vals from left/right with sorted arr
         # consider different cases and get their own min diff
         n = len(nums)
@@ -17,3 +41,6 @@ class Solution(object):
         d4 = nums[-1] - nums[3]  # remove 3 smallests
         
         return min(d1, d2, d3, d4)
+        
+        """
+        
