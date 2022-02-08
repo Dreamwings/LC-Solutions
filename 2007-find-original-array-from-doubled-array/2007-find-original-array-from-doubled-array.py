@@ -6,6 +6,10 @@ class Solution(object):
         """
         from collections import Counter
         
+        ## S1:
+        ## Time: O(NlogN)
+        ## Space: O(N)
+        
         d = Counter(changed)
         res = []
         
