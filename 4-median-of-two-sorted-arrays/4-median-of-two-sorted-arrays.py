@@ -31,6 +31,8 @@ class Solution(object):
         
         def kth(a, b, k):
             # find the (k+1)-th element
+            # note that array slicing is O(N), so this is not real O(logN)
+            # but can change the array slicing with indices as also shown in the above link
             if not a: return b[k]
             if not b: return a[k]
             i, j = len(a) // 2, len(b) // 2
