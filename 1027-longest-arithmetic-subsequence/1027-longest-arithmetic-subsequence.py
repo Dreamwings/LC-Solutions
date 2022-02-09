@@ -8,19 +8,18 @@ class Solution:
         n = len(nums)
         if n <= 2: return n
         
-        dp = [dict() for _ in range(n)]
+        f = [dict() for _ in range(n)]
         res = 0
         
         for i, x in enumerate(nums[1:], start=1):
             for j, y in enumerate(nums[:i]):
                 d = x - y
-                if d not in dp[j]:
-                    dp[i][d] = 2
+                if d not in f[j]:
+                    f[i][d] = 2
                 else:
-                    dp[i][d] = dp[j][d] + 1
-                    
-                res = max(res, dp[i][d])
-        
+                    f[i][d] = f[j][d] + 1
+                res = max(res, f[i][d])
+                
         return res
         
         
