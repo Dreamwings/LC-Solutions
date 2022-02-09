@@ -30,6 +30,7 @@ class Solution(object):
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2511/Intuitive-Python-O(log-(m%2Bn))-solution-by-kth-smallest-in-the-two-sorted-arrays-252ms
         
         def kth(a, b, k):
+            # find the (k+1)-th element
             if not a: return b[k]
             if not b: return a[k]
             i, j = len(a) // 2, len(b) // 2
