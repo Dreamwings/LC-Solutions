@@ -1,6 +1,6 @@
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
-        """
+        
         ## S1:
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2755/9-lines-O(log(min(mn)))-Python
         ## Time: O(logmin(m,n)))
@@ -25,6 +25,7 @@ class Solution(object):
             return mid_vals[0]
         else:
             return (mid_vals[0] + mid_vals[1]) / 2.0
+        
         """
         ## S2: Find Kth Element of Two Sorted Arrays
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2511/Intuitive-Python-O(log-(m%2Bn))-solution-by-kth-smallest-in-the-two-sorted-arrays-252ms
@@ -55,4 +56,4 @@ class Solution(object):
         else:
             return 0.5 * (kth(nums1, nums2, n//2) + kth(nums1, nums2, n//2 - 1))
         
-        
+        """
