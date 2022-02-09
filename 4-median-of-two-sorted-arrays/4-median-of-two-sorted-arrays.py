@@ -1,6 +1,6 @@
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
-        
+        """
         ## S1:
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2755/9-lines-O(log(min(mn)))-Python
         ## Time: O(logmin(m,n)))
@@ -32,9 +32,10 @@ class Solution(object):
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2511/Intuitive-Python-O(log-(m%2Bn))-solution-by-kth-smallest-in-the-two-sorted-arrays-252ms
         
         def kth(a, b, k):
-            # find the (k+1)-th element
+            # find the k-th element (0 based index)
             # note that array slicing is O(N), so this is not real O(logN)
             # but can change the array slicing with indices as also shown in the above link
+            
             if not a: return b[k]
             if not b: return a[k]
             i, j = len(a) // 2, len(b) // 2
@@ -57,4 +58,4 @@ class Solution(object):
         else:
             return 0.5 * (kth(nums1, nums2, n//2) + kth(nums1, nums2, n//2 - 1))
         
-        """
+        
