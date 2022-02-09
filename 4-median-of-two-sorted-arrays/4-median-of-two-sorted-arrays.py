@@ -12,11 +12,12 @@ class Solution(object):
         l, r = 0, m - 1
         
         while l <= r:
-            i = (l + r) >> 1
-            if mid - i - 1 < 0 or a[i] >= b[mid - i - 1]:
-                r = i - 1
+            x = (l + r) >> 1
+            y = mid - x - 1
+            if y < 0 or a[x] >= b[y]:
+                r = x - 1
             else:
-                l = i + 1
+                l = x + 1
                 
         mid_vals = sorted(a[l : l+2] + b[mid-l : mid - l + 2]) # four vals
         # print(l, mid)
