@@ -1,11 +1,6 @@
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
         """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: float
-        """
-        
         ## S1:
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2755/9-lines-O(log(min(mn)))-Python
         ## Time: O(logmin(m,n)))
@@ -30,25 +25,31 @@ class Solution(object):
             return mid_vals[0]
         else:
             return (mid_vals[0] + mid_vals[1]) / 2.0
-        
-        
-#         a, b = sorted((nums1, nums2), key=len)
-#         m, n = len(a), len(b)
-#         after = (m + n - 1) // 2
-#         lo, hi = 0, m
-#         while lo < hi:
-#             i = (lo + hi) // 2
-#             if after-i-1 < 0 or a[i] >= b[after-i-1]:
-#                 hi = i
-#             else:
-#                 lo = i + 1
-#         i = lo
-        
-#         nextfew = sorted(a[i:i+2] + b[after-i:after-i+2])
-#         print(lo, after)
-#         print(nextfew)
-#         return (nextfew[0] + nextfew[1 - (m+n)%2]) / 2.0
-    
-    
-        ## S2:
+        """
+        ## S2: Find Kth Element of Two Sorted Arrays
         ## https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2511/Intuitive-Python-O(log-(m%2Bn))-solution-by-kth-smallest-in-the-two-sorted-arrays-252ms
+        
+        def kth(a, b, k):
+            if not a: return b[k]
+            if not b: return a[k]
+            i, j = len(a) // 2, len(b) // 2
+            ma, mb = a[i], b[j]
+            
+            if i + j < k: 
+                if ma > mb: # a's median larger than b's, b's first half doesn't include k
+                    return kth(a, b[j+1:], k - j - 1)
+                else:
+                    return kth(a[i+1:], b, k - i - 1)
+            else:
+                if ma > mb: # a's second half doesn't include k
+                    return kth(a[:i], b, k)
+                else:
+                    return kth(a, b[:j], k)
+                    
+        n = len(nums1) + len(nums2)
+        if n & 1:
+            return kth(nums1, nums2, n//2)
+        else:
+            return 0.5 * (kth(nums1, nums2, n//2) + kth(nums1, nums2, n//2 - 1))
+        
+        
