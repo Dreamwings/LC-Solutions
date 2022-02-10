@@ -7,11 +7,26 @@
 
 class Solution(object):
     def isCompleteTree(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
+        from collections import deque
         
+        ## Solution 3: BFS (Improved Solution 2)
+        
+        if root is None: return True
+        
+        num = 0
+        q = deque([(root, 1)])
+        
+        while q:
+            node, i = q.popleft()
+            num += 1
+            if node.left:
+                q.append((node.left, 2 * i))
+            if node.right:
+                q.append((node.right, 2 * i + 1))
+        
+        return num == i
+    
+        """
         ## Solution 1: DFS
         
         if not root: return True
@@ -33,7 +48,6 @@ class Solution(object):
         
         
         
-        """
         ## Solution 2: BFS
         from collections import deque
         
@@ -53,21 +67,5 @@ class Solution(object):
         return res[-1] == len(res)
         
         
-        ## Solution 3: BFS (Improved Solution 2)
-        from collections import deque
-        
-        if root is None: return True
-        
-        num = 0
-        q = deque([(root, 1)])
-        
-        while q:
-            node, i = q.popleft()
-            num += 1
-            if node.left:
-                q.append((node.left, 2 * i))
-            if node.right:
-                q.append((node.right, 2 * i + 1))
-        
-        return num == i
         """
+        
