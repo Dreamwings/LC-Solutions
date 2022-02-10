@@ -1,11 +1,13 @@
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+class Solution(object):
+    def getAllElements(self, root1, root2):
+        """
+        ## S1: Inorder Traversal and Merge
         
         def inorder(node):
             if not node: return []
@@ -13,10 +15,8 @@ class Solution:
         
         a = inorder(root1)
         b = inorder(root2)
-        
-        i = j = 0
         res = []
-        
+        i = j = 0
         while i < len(a) and j < len(b):
             if a[i] <= b[j]:
                 res.append(a[i])
@@ -25,8 +25,18 @@ class Solution:
                 res.append(b[j])
                 j += 1
         
-        if i < len(a):
-            res += a[i:]
-        if j < len(b):
-            res += b[j:]
+        res += a[i:] + b[j:]
         return res
+            
+        """
+        
+        ## S2: Inorder Traversal and Timsort
+        
+        def inorder(node):
+            if not node: return []
+            return inorder(node.left) + [node.val] + inorder(node.right)
+        
+        a = inorder(root1)
+        b = inorder(root2)
+        
+        return sorted(a + b)
