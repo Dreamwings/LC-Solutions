@@ -6,6 +6,22 @@
 #         self.right = right
 class Solution(object):
     def getAllElements(self, root1, root2):
+        
+        ## S2: Inorder Traversal and TimSort
+        ## https://leetcode.com/problems/all-elements-in-two-binary-search-trees/discuss/464368/Short-O(n)-Python
+        ## Time: O(N), Timsort for two sorted arrays is O(N) 
+        
+        ## https://stackoverflow.com/questions/464342/combining-two-sorted-lists-in-python
+        
+        def inorder(node):
+            if not node: return []
+            return inorder(node.left) + [node.val] + inorder(node.right)
+        
+        a = inorder(root1)
+        b = inorder(root2)
+        
+        return sorted(a + b)
+        
         """
         ## S1: Inorder Traversal and Merge
         
@@ -30,13 +46,3 @@ class Solution(object):
             
         """
         
-        ## S2: Inorder Traversal and Timsort
-        
-        def inorder(node):
-            if not node: return []
-            return inorder(node.left) + [node.val] + inorder(node.right)
-        
-        a = inorder(root1)
-        b = inorder(root2)
-        
-        return sorted(a + b)
