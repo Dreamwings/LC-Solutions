@@ -6,6 +6,26 @@ class Solution(object):
         :rtype: int
         """
         
+        ## S2: Mono Queue
+        ## Time: O(N)
+        ## Space: O(N)
+        
+        q = collections.deque()  # store (yi - xi, xi)
+        res = float('-inf')
+        
+        for x, y in points:
+            while q and x - q[0][1] > k:
+                q.popleft()
+            if q:
+                res = max(res, q[0][0] + x + y)
+            while q and q[-1][0] < y - x:
+                q.pop()
+            q.append((y - x, x))
+            
+        return res
+    
+        """
+        
         ## S1: Priority Queue
         ## Time: O(NlogN)
         ## Space: O(N)
@@ -25,3 +45,4 @@ class Solution(object):
             heappush(hq, (x - y, x))
         
         return res
+        """
