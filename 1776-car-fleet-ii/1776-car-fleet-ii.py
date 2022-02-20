@@ -20,8 +20,8 @@ class Solution(object):
                 j = stack[-1]
                 next_p, next_s = cars[j]
                 next_hit_t = res[j]
-                # two cases:
-                # 1. A catchs B and collides, s > next_s
+                # two cases no collision:
+                # 1. A catchs B and collides, s <= next_s
                 # 2. A catchs B+C since B catches C and collides first, next_hit_t is the time B catches C
                 #    tmp = (next_p - p) * 1.0 / (s - next_s)
                 #    tmp >= next_hit_t > 0, with this case, neet to pop last i from stack, but check the previous stack val
@@ -29,9 +29,9 @@ class Solution(object):
                     # Case 1: no collision
                     stack.pop()
                 elif next_hit_t > 0 and (next_p - p) * 1.0 / (s - next_s) >= next_hit_t:
-                    # Case 2: no collision
+                    # Case 2: no collision between A and B
                     stack.pop()
-                else: # has collision
+                else: # has collision, between A and B, or between A and C
                     break
             
             if stack:
