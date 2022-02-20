@@ -9,6 +9,7 @@ class Solution(object):
         ## https://leetcode.com/problems/strange-printer/discuss/106795/Python-Straightforward-DP-with-Explanation
         
         # shorten the original string, like reduce aaabbb to ab.
+        # this is not neccessary, but it makes DP more efficient
         S = ''
         for a, b in zip(s, '#' + s):
             if a != b:
