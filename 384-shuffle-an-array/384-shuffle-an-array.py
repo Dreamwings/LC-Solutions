@@ -16,13 +16,17 @@ class Solution(object):
 
     def shuffle(self):
         """
-        :rtype: List[int]
-        """
+        
         ## S1: 
         arr = self.d[:]
         random.shuffle(arr)
         return arr
-
+        
+        """
+        ## S2:
+        
+        return sorted(self.d, key=lambda x: random.random())
+        
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
