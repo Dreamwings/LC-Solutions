@@ -15,9 +15,9 @@ class Solution(object):
         
 
     def shuffle(self):
-        """
         
-        ## S1: 
+        ## S1: faster
+        
         arr = self.d[:]
         random.shuffle(arr)
         return arr
@@ -26,7 +26,7 @@ class Solution(object):
         ## S2:
         
         return sorted(self.d, key=lambda x: random.random())
-        
+        """
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
