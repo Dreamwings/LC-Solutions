@@ -20,7 +20,7 @@ class Solution(object):
         
         # flat_list = list(itertools.chain(*bucket))
         # return flat_list[::-1][:k]
-        
+        # print(bucket)
         res = []
         for i in range(n, -1, -1):
             if bucket[i]:
