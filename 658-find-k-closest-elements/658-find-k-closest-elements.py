@@ -7,7 +7,7 @@ class Solution:
         # do binary search
         
         n = len(arr)
-        l, r = 0, n - 1 - k  # l, r are both valid index [l, r]
+        l, r = 0, n - 1 - k
         
         while l <= r:
             m = (l + r) >> 1
