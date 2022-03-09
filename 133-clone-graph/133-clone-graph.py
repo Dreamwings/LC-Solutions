@@ -11,22 +11,20 @@ class Solution:
         
         if not node: return None
         
-        d = collections.defaultdict(Node)
-        # d = collections.defaultdict(lambda: Node(0, None))  # both ways are good!
+        d = collections.defaultdict(lambda: Node(0, []))
         root = Node(node.val, [])
         d[node.val] = root
         q = [node]
         
         while q:
             x = q.pop()
-            x_c = d[x.val]
+            xc = d[x.val]
             
             for y in x.neighbors:
                 if y.val not in d:
                     q.append(y)
                     d[y.val] = Node(y.val, [])
-                
-                y_c = d[y.val]
-                x_c.neighbors.append(y_c)
+                yc = d[y.val]
+                xc.neighbors.append(yc)
         
         return root
