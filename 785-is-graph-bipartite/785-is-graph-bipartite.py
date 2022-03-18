@@ -1,8 +1,12 @@
-class Solution:
-    def isBipartite(self, graph: List[List[int]]) -> bool:
+class Solution(object):
+    def isBipartite(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: bool
+        """
         
+        ## Solution 1: DFS
         color = {}
-        
         def dfs(x):
             for y in graph[x]:
                 if y in color:
@@ -20,6 +24,11 @@ class Solution:
                 if not dfs(x):
                     return False
         
-        return True            
+        return True
+        
+        ## Solution 2: BFS
+        
+        
+        
         
         
