@@ -1,17 +1,31 @@
-class Solution(object):
-    def canPartition(self, nums):
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        
         """
-        :type nums: List[int]
-        :rtype: bool
+        s = sum(nums)
+        if s % 2: return False
+        
+        s = s // 2
+        
+        seen = set([0])
+        
+        for x in nums:
+            cur = seen.copy()
+            for y in cur:
+                z = x + y
+                if z == s:
+                    return True
+                elif z < s:
+                    seen.add(z)
+        
+        return False        
         """
         
-        ## S2: DP
-        ## Time: O(N * S)
-        ## Space: O(S)
+        ## S 2: DP
         
         s = sum(nums)
         if s & 1: return False
-        s = s >> 1
+        s >>= 1
         
         dp = [False] * (s + 1)
         dp[0] = True
@@ -20,29 +34,6 @@ class Solution(object):
             if dp[s]:
                 return True
             for y in range(s, x - 1, -1):
-                # y is the possible sum with x
                 dp[y] = dp[y] | dp[y - x]
-        
+                
         return dp[s]
-        
-        """
-        ## S 1:
-        
-        s = sum(nums)
-        if s & 1: return False
-        s = s >> 1
-        
-        d = set([0])
-        
-        for x in nums:
-            c = d.copy()
-            for y in c:
-                z = x + y
-                if z == s:
-                    return True
-                elif z < s:
-                    d.add(z)
-        
-        return False
-        """
-        
