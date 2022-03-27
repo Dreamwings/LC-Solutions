@@ -20,11 +20,10 @@ class Solution:
                     if node.right:
                         res.append(node.right)
                     return None
-                
                 return node
         
         if root.val not in to_del:
             res.append(root)
-            
+        
         dfs(root)
         return res
