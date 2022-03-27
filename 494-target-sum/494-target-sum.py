@@ -11,18 +11,17 @@ class Solution(object):
         ## S 2: BFS
         ## Special level traversal BFS
         
-        cur_stop = defaultdict(int)
-        cur_stop[0] = 1
+        cnt = defaultdict(int)
+        cnt[0] = 1
         
-        for dist in nums:
-            next_stop = defaultdict(int)
-            for stop, cnt in cur_stop.items():
-                next_stop[stop + dist] += cnt
-                next_stop[stop - dist] += cnt
-            cur_stop = next_stop
-                
-        return cur_stop[target]
-    
+        for x in nums:
+            cur_cnt = defaultdict(int)
+            for y, c in cnt.items():
+                cur_cnt[y + x] += c
+                cur_cnt[y - x] += c
+            cnt = cur_cnt
+            
+        return cnt[target]
         
         """
         
