@@ -12,8 +12,7 @@ class Solution:
                 seen.remove(stack[-1])
                 stack.pop()
             
-            seen.add(c)
             stack.append(c)
+            seen.add(c)
             
         return ''.join(stack)
-        
