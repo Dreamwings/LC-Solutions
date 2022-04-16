@@ -1,22 +1,17 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def maxAncestorDiff(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
+class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
         
         ## S1: DFS
         
         self.res = 0
         
         def dfs(node):
-            # return the max and min value for the subtree at node
             if not node:
                 return float('-inf'), float('inf')
             
@@ -32,3 +27,5 @@ class Solution(object):
         
         dfs(root)
         return self.res
+        
+        
