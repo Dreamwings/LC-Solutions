@@ -1,9 +1,5 @@
-class Solution(object):
-    def diagonalSort(self, mat):
-        """
-        :type mat: List[List[int]]
-        :rtype: List[List[int]]
-        """
+class Solution:
+    def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
         
         m, n = len(mat), len(mat[0])
         d = collections.defaultdict(list)
@@ -14,9 +10,9 @@ class Solution(object):
         
         for k in d:
             d[k].sort(reverse=True)
-        
+            
         for i in range(m):
             for j in range(n):
-                k = i - j
-                mat[i][j] = d[k].pop()
+                mat[i][j] = d[i-j].pop()
+                
         return mat
