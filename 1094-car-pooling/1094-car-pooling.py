@@ -1,10 +1,5 @@
-class Solution(object):
-    def carPooling(self, trips, capacity):
-        """
-        :type trips: List[List[int]]
-        :type capacity: int
-        :rtype: bool
-        """
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
         
         d = collections.defaultdict(int)
         
@@ -13,8 +8,10 @@ class Solution(object):
             d[to] -= x
         
         cnt = 0
-        for i in sorted(d):
-            cnt += d[i]
+        
+        for k in sorted(d):
+            cnt += d[k]
             if cnt > capacity:
                 return False
+        
         return True
