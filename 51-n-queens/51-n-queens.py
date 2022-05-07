@@ -1,36 +1,30 @@
-class Solution(object):
-    def solveNQueens(self, n):
-        """
-        :type n: int
-        :rtype: List[List[str]]
-        """
-        
-        ## S1: DFS Backtracking
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
         
         q, cols, xy_sum, xy_dif = [], [], [], []
         
         def dfs(q, cols, xy_sum, xy_dif):
-            x = len(cols)  # current len of cols actually is the row number to be visited next
+            x = len(cols)
             if x == n:
                 q.append(cols)
                 return
             
-            for y in range(n):  # y is the col number to be visited next
+            for y in range(n):
                 s, d = x + y, x - y
-                col_good = y not in cols  # this col is not occupied by previous Queens
-                pos_good = s not in xy_sum  # no Queens on positive 45 degree line
-                neg_good = d not in xy_dif  # no Queens on negative 45 degree line
+                col_good = y not in cols
+                pos_good = s not in xy_sum
+                neg_good = d not in xy_dif
                 if col_good and pos_good and neg_good:
                     dfs(q, cols + [y], xy_sum + [s], xy_dif + [d])
-        
+                    
         dfs(q, cols, xy_sum, xy_dif)
         
         res = []
+        
         for col in q:
             row = []
             for y in col:
-                row.append('.' * y + 'Q' + '.' * (n - 1 - y))
+                row.append('.' * y + 'Q' + '.' * (n-1-y))
             
             res.append(row)
-            
         return res
