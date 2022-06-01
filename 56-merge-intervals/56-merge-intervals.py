@@ -2,8 +2,8 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         
         
-        # arr = sorted(intervals, key=lambda x: x[0]) # use arr for short, just for coding purpose
-        arr = sorted(intervals)
+        arr = sorted(intervals, key=lambda x: x[0]) # use arr for short, just for coding purpose
+        # arr = sorted(intervals)  # slower
         res = [arr[0]]
         
         for x, y in arr[1:]:
