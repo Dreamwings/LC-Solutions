@@ -1,18 +1,13 @@
-class Solution(object):
-    def longestOnes(self, A, K):
-        """
-        :type A: List[int]
-        :type K: int
-        :rtype: int
-        """
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
         
-        ## Solution 1: Two Pointers with a Moving Window
+        i = 0
         
-        l = 0
-        for r, x in enumerate(A):
-            K -= (1 - x)
-            if K < 0: # Need to move the left pointer
-                K += (1 - A[l])
-                l += 1
-                
-        return r - l + 1
+        for j, x in enumerate(nums):
+            k -= (1 - x)
+            if k < 0:
+                k += (1 - nums[i])
+                i += 1
+        
+        return j - i + 1
+        
