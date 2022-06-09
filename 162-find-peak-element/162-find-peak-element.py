@@ -15,6 +15,7 @@ class Solution(object):
         #     else:
         #         r = m
         while l <= r:
+            # print(l, r)
             m = (l + r) >> 1
             if m + 1 < n and nums[m] < nums[m+1]:
                 l = m + 1
