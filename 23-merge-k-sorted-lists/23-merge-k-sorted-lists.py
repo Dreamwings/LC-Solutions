@@ -14,12 +14,13 @@ class Solution(object):
         from heapq import heapify, heappush, heappop
         
         hq = []
+        
         for i, node in enumerate(lists):
             if node:
-                hq.append((node.val, i, node))  # add index i to avoid heapq comparison error between nodes with same values
+                heappush(hq, (node.val, i, node))
         
-        heapify(hq)
-        dummy = curr = ListNode(0)
+        dummy = ListNode(0)
+        curr = dummy
         
         while hq:
             v, i, x = heappop(hq)
@@ -30,6 +31,4 @@ class Solution(object):
                 heappush(hq, (x.next.val, i, x.next))
         
         return dummy.next
-            
-        
         
