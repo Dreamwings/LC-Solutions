@@ -1,20 +1,29 @@
-class RandomizedSet:
-
+class RandomizedSet(object):
+    
     def __init__(self):
+        
         self.d = collections.defaultdict(int)
         self.v = []
 
-    def insert(self, val: int) -> bool:
+    def insert(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
         if val in self.d:
             return False
         self.d[val] = len(self.v)
         self.v.append(val)
         return True
-
-    def remove(self, val: int) -> bool:
+        
+        
+    def remove(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
         if val not in self.d:
             return False
-        
         i = self.d[val]
         t = self.v[-1]
         self.v[i] = t
@@ -22,10 +31,15 @@ class RandomizedSet:
         self.v.pop()
         del self.d[val]
         return True
+        
 
-    def getRandom(self) -> int:
+    def getRandom(self):
+        """
+        :rtype: int
+        """
+        
         return random.choice(self.v)
-
+        
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
