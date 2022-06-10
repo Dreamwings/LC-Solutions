@@ -9,11 +9,14 @@ class Node:
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         
+        from collections import defaultdict
+        
         if not node: return None
         
-        d = collections.defaultdict(lambda: Node(0, []))
+        d = defaultdict(lambda: Node(0, None))
         root = Node(node.val, [])
         d[node.val] = root
+        
         q = [node]
         
         while q:
@@ -24,6 +27,7 @@ class Solution:
                 if y.val not in d:
                     q.append(y)
                     d[y.val] = Node(y.val, [])
+                    
                 yc = d[y.val]
                 xc.neighbors.append(yc)
         
