@@ -13,6 +13,7 @@ class Solution(object):
         
         n = len(nums)
         if n == 0: return [-1, -1]
+        
         if target < nums[0] or target > nums[-1]: return [-1, -1]
         
         i = bisect_left(nums, target)
@@ -21,6 +22,7 @@ class Solution(object):
         j = bisect_right(nums, target)
         
         return [i, j-1]
+        
         
         """
         
