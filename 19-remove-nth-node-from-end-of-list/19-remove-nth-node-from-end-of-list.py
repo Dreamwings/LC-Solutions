@@ -25,5 +25,6 @@ class Solution(object):
         
         slow.next = slow.next.next
         return dummy.next
+        # note that you should not return head because head might be removed.
         
         
