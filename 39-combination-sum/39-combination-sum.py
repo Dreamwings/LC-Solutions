@@ -4,15 +4,15 @@ class Solution:
         a = candidates
         n = len(a)
         
-        def dfs(pos, t, path):
+        def dfs(pos, path, t):
             if t < 0: return
             if t == 0:
                 res.append(path)
                 return
             
             for i in range(pos, n):
-                dfs(i, t - a[i], path + [a[i]])
+                dfs(i, path + [a[i]], t - a[i])
         
         res = []
-        dfs(0, target, [])
+        dfs(0, [], target)
         return res
