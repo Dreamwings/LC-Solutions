@@ -7,28 +7,30 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
         def reverse(node):
-            prev, curr = None, node
-            while curr:
-                curr.next, curr, prev = prev, curr.next, curr
+            if not node: return None
+            pre, cur = None, node
             
-            return prev
+            while cur:
+                cur.next, cur, pre = pre, cur.next, cur
+            
+            return pre
         
         if not head: return True
-        
-        slow = fast = head
+        fast = slow = head
         
         while fast.next and fast.next.next:
             fast = fast.next.next
             slow = slow.next
         
-        tmp, slow.next = slow.next, None
-        first = head
-        second = reverse(tmp)
+        half2 = slow.next
+        slow.next = None
         
-        while first and second:
-            if first.val != second.val:
+        half1, half2 = head, reverse(half2)
+        
+        while half1 and half2:
+            if half1.val != half2.val:
                 return False
-            first = first.next
-            second = second.next
+            half1 = half1.next
+            half2 = half2.next
             
         return True
