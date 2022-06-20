@@ -17,11 +17,10 @@ class Solution:
                 if d not in f[j]:
                     f[i][d] = 2
                 else:
-                    f[i][d] = f[j][d] + 1
+                    f[i][d] = 1 + f[j][d]
                 res = max(res, f[i][d])
                 
         return res
-        
         
         """
         n = len(nums)
