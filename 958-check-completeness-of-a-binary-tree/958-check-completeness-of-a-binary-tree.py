@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
-        """
+        
         ## S1: DFS
         
         if not root: return True
@@ -26,9 +26,9 @@ class Solution:
         cnt, last = dfs(root, 1)
         return cnt == last
         
+        """
         
-        
-        ## BFS
+        ## S2: BFS
         from collections import deque
         
         q = deque([(root, 1)])
@@ -46,7 +46,8 @@ class Solution:
             return True
         return False
             
-        """
+        
+        ## S3: BFS
         
         if not root: return True
         
@@ -63,4 +64,4 @@ class Solution:
         if i == cnt: return True
         return False
         
-        
+        """
