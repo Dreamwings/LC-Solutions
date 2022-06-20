@@ -1,33 +1,13 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution(object):
-    def isCompleteTree(self, root):
-        from collections import deque
-        
-        ## Solution 3: BFS (Improved Solution 2)
-        
-        if root is None: return True
-        
-        num = 0
-        q = deque([(root, 1)])
-        
-        while q:
-            node, i = q.popleft()
-            num += 1
-            if node.left:
-                q.append((node.left, 2 * i))
-            if node.right:
-                q.append((node.right, 2 * i + 1))
-        
-        return num == i
-    
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         """
-        ## Solution 1: DFS
+        ## S1: DFS
         
         if not root: return True
         
@@ -48,24 +28,39 @@ class Solution(object):
         
         
         
-        ## Solution 2: BFS
+        ## BFS
         from collections import deque
         
-        if root is None: return True
-        
-        res = []
         q = deque([(root, 1)])
+        cnt = 0
         
         while q:
-            node, i = q.popleft()
-            res.append(i)
+            node, x = q.popleft()
+            cnt += 1
+            if node.left:
+                q.append((node.left, 2 * x))
+            if node.right:
+                q.append((node.right, 2 * x + 1))
+        
+        if x == cnt:
+            return True
+        return False
+            
+        """
+        
+        if not root: return True
+        
+        q = [(root, 1)]
+        cnt = 0
+        
+        for node, i in q:
+            cnt += 1
             if node.left:
                 q.append((node.left, 2 * i))
             if node.right:
                 q.append((node.right, 2 * i + 1))
         
-        return res[-1] == len(res)
+        if i == cnt: return True
+        return False
         
-        
-        """
         
