@@ -1,29 +1,29 @@
-class Solution(object):
-    def calculate(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def calculate(self, s: str) -> int:
         
         res, v, sign = 0, 0, 1
-        stack = [] # used when there is '()'
+        stack = []
         
         for c in s:
             if c.isdigit():
                 v = 10 * v + int(c)
-            elif c in '+-':
-                res += sign * v
+            elif c in "+-":
+                res += v * sign
+                sign = [-1, 1][c == '+']
                 v = 0
-                sign = [-1, 1][c == '+'] # note first one is False, second one is True
-            elif c == '(':
+            elif c == "(":
                 stack.append(res)
                 stack.append(sign)
                 res, sign = 0, 1
-            elif c == ')':
+            elif c == ")":
                 res += sign * v
-                res *= stack.pop() # the sign before '('
-                res += stack.pop() # prev res before '('
+                res *= stack.pop()
+                res += stack.pop()
                 v = 0
-        
+                sign = 1
+                
         res += sign * v
         return res
+                
+        
+        
