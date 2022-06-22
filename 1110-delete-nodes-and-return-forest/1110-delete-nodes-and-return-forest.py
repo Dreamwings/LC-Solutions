@@ -1,20 +1,25 @@
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def delNodes(self, root: TreeNode, to_delete: List[int]) -> List[TreeNode]:
+class Solution(object):
+    def delNodes(self, root, to_delete):
+        """
+        :type root: TreeNode
+        :type to_delete: List[int]
+        :rtype: List[TreeNode]
+        """
         
-        d = set(to_delete)
+        to_del = set(to_delete)
         res = []
         
         def dfs(node):
             if node:
                 node.left = dfs(node.left)
                 node.right = dfs(node.right)
-                if node.val in d:
+                if node.val in to_del:
                     if node.left:
                         res.append(node.left)
                     if node.right:
@@ -23,8 +28,8 @@ class Solution:
                 else:
                     return node
                 
-        if root.val not in d:
+        if root.val not in to_del:
             res.append(root)
-            
+        
         dfs(root)
         return res
