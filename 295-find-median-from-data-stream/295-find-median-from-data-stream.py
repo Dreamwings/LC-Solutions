@@ -9,13 +9,11 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         
         if len(self.s) == len(self.b):
-            heappush(self.s, -num)
-            x = -heappop(self.s)
+            x = -heappushpop(self.s, -num)
             heappush(self.b, x)
         else:
-            heappush(self.b, num)
-            y = heappop(self.b)
-            heappush(self.s, -y)
+            x = heappushpop(self.b, num)
+            heappush(self.s, -x)
 
     def findMedian(self) -> float:
         
