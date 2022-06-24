@@ -1,5 +1,10 @@
-class Solution:
-    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
+class Solution(object):
+    def updateBoard(self, board, click):
+        """
+        :type board: List[List[str]]
+        :type click: List[int]
+        :rtype: List[List[str]]
+        """
         
         m, n = len(board), len(board[0])
         a, b = click
