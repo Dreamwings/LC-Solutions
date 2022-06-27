@@ -12,6 +12,9 @@ class Solution(object):
         
         m, n = len(matrix), len(matrix[0])
         res = 0
+        # use matrix itself as the DP matrix to store DP values
+        # dp[i][j]: 1. the largest size of squares with (i, j) cell as the right bottom cell.
+        #           2. the number of squares with (i, j) cell as the right bottom cell.
         
         for i in range(m):
             for j in range(n):
