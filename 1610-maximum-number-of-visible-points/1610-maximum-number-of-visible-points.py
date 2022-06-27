@@ -1,36 +1,25 @@
-class Solution(object):
-    def visiblePoints(self, points, angle, location):
-        """
-        :type points: List[List[int]]
-        :type angle: int
-        :type location: List[int]
-        :rtype: int
-        """
+class Solution:
+    def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
         
-        ## S1: Sliding Window
-        ## https://leetcode.com/problems/maximum-number-of-visible-points/discuss/877822/Python-clean-sliding-window-solution-with-explanation
-        ## Time: O(NlogN)
-        ## Space: O(N)
-        
-        arr, extra = [], 0
+        ## S1: Sliding Windows
+        arr, extra, res = [], 0, 0
         xx, yy = location
         
         for x, y in points:
             if x == xx and y == yy:
                 extra += 1
                 continue
-            arr.append(math.atan2(y - yy, x - xx))
+            xy_angle = math.atan2(y - yy, x - xx)
+            arr.append(xy_angle)
         
-        # print(2*math.pi)
         arr.sort()
-        arr = arr + [x + 2.0 * math.pi for x in arr]
-        angle = math.pi * angle / 180
+        arr = arr + [x + 2 * math.pi for x in arr]
+        angle = angle * pi / 180
+        i = 0  # left point of sliding window
         
-        l = ans = 0
-        for r in range(len(arr)):
-            while arr[r] - arr[l] > angle:
-                l += 1
-            ans = max(ans, r - l + 1)
+        for j in range(len(arr)):
+            while arr[j] - arr[i] > angle:
+                i += 1
+            res = max(res, j - i + 1)
             
-        return ans + extra
-        
+        return res + extra
