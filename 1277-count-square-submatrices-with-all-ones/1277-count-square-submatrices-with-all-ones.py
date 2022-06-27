@@ -15,8 +15,11 @@ class Solution(object):
         
         for i in range(m):
             for j in range(n):
+                # for the first row (i==0) or the first col (j==0), just keep the value
+                # for other cells, update the value with the DP equation
                 if matrix[i][j] and i > 0 and j > 0:
                     matrix[i][j] = 1 + min(matrix[i-1][j], matrix[i][j-1], matrix[i-1][j-1])
+                
                 res += matrix[i][j]
                     
         return res
