@@ -5,6 +5,8 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        # yi + yj + |xi - xj| = yi + yj - xi + xj because points is sorted by x and i < j
+        # = (yi - xi) + yj + xj
         
         ## S2: Mono Queue
         ## Time: O(N)
