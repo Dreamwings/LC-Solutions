@@ -1,7 +1,14 @@
-class Solution:
-    def longestStrChain(self, words: List[str]) -> int:
+class Solution(object):
+    def longestStrChain(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
         
         ## S1: DP
+        ## https://leetcode.com/problems/longest-string-chain/discuss/1213876/Python-3-solutions-LIS-DP-Top-down-DP-Bottom-up-DP-Clean-and-Concise
+        ## Time: O(NlogN + N*L*L)
+        ## Space: O(N)
         
         words.sort(key=len)
         dp = collections.defaultdict(int)
@@ -16,3 +23,4 @@ class Solution:
                     
             res = max(res, dp[w])
         return res
+        
