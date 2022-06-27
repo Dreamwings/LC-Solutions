@@ -21,6 +21,7 @@ class Solution(object):
                 continue
             arr.append(math.atan2(y - yy, x - xx))
         
+        # print(2*math.pi)
         arr.sort()
         arr = arr + [x + 2.0 * math.pi for x in arr]
         angle = math.pi * angle / 180
