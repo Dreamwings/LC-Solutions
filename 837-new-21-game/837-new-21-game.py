@@ -11,7 +11,8 @@ class Solution:
             dp[i] = s / maxPts
             if i < k:
                 s += dp[i]
+            
             if i >= maxPts:
                 s -= dp[i - maxPts]
-                
-        return sum(dp[k:])        
+        
+        return sum(dp[k:])
