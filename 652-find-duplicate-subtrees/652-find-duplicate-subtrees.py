@@ -1,15 +1,11 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def findDuplicateSubtrees(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[TreeNode]
-        """
+class Solution:
+    def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         
         d = collections.Counter()
         res = []
