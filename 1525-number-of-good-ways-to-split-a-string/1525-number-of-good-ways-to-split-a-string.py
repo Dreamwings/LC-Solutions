@@ -1,14 +1,7 @@
-class Solution(object):
-    def numSplits(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        from collections import Counter
+class Solution:
+    def numSplits(self, s: str) -> int:
         
-        ## S1: Sliding Windows with Counter
-        ## Time: O(N)
-        ## Space: O(N)
+        from collections import Counter
         
         l, r = Counter(), Counter(s)
         res = 0
@@ -22,5 +15,5 @@ class Solution(object):
             
             if len(l) == len(r):
                 res += 1
-                
+        
         return res
