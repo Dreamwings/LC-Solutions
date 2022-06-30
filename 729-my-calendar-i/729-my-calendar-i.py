@@ -14,6 +14,7 @@ class MyCalendar(object):
         if i == j and i % 2 == 0: # i is even
             self.a.add(start)
             self.a.add(end)
+            # print(self.a)
             return True
         
         return False
