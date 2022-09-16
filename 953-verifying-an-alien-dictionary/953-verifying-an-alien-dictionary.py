@@ -1,65 +1,25 @@
-class Solution(object):
-    def isAlienSorted(self, words, order):
-        """
-        :type words: List[str]
-        :type order: str
-        :rtype: bool
-        """        
-        ## S2: faster than S1
-        ## Time: O(MN)
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
         
-        d = {c:i for i, c in enumerate(order)}
+        d = {c: i for i, c in enumerate(order)}
         
-        def comp(a, b):
+        def comp(x, y):
             i = 0
-            while i < len(a) and i < len(b):
-                if d[a[i]] < d[b[i]]:
+            while i < len(x) and i < len(y):
+                if d[x[i]] < d[y[i]]:
                     return True
-                elif d[a[i]] > d[b[i]]:
+                elif d[x[i]] > d[y[i]]:
                     return False
                 else:
                     i += 1
-            
-            if not a[i:]: return True
-            else: return False
+            if not x[i:]: return True
+            return False
         
         for a, b in zip(words[:-1], words[1:]):
             if not comp(a, b):
                 return False
-        
-        return True
+            
+        return True    
                 
-        """
-        ## S3:
-        ## Time: max(O(MN), O(NlogN))
-        
-        d = {c:i for i, c in enumerate(order)}
-        
-        a = [[d[c] for c in word] for word in words]
-        
-        return a == sorted(a)
         
         
-        
-        
-        ## S1:
-        
-        def comp(a, b):
-            i = 0
-            while i < len(a) and i < len(b):
-                if order.index(a[i]) < order.index(b[i]):
-                    return True
-                elif order.index(a[i]) > order.index(b[i]):
-                    return False
-                else:
-                    i += 1
-            
-            if not a[i:]: return True
-            else: return False
-        
-        for a, b in zip(words[:-1], words[1:]):
-            if not comp(a, b):
-                return False
-        
-        return True
-        """
