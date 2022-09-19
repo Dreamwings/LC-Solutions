@@ -12,7 +12,6 @@ class Solution:
         for i, x in enumerate(nums):
             s += x
             s %= k
-            
             if s not in d:
                 d[s] = i
             else:
