@@ -8,13 +8,16 @@ class Solution:
         
         def dfs(pos, path):
             if pos == n:
-                res.append(" ".join(path))
+                res.append(path)
                 return
             
             for i in range(pos+1, n+1):
-                if s[pos : i] in words:
-                    dfs(i, path + [s[pos : i]])
+                if s[pos:i] in words:
+                    if path == '':
+                        dfs(i, s[pos:i])
+                    else:
+                        dfs(i, path + ' ' + s[pos:i])
         
         res = []
-        dfs(0, [])
+        dfs(0, '')
         return res
