@@ -3,17 +3,18 @@ class Solution:
         
         ## S1: DFS Backtracking
         
+        words = set(wordDict)
+        n = len(s)
+        
         def dfs(pos, path):
             if pos == n:
-                res.append(' '.join(path))
+                res.append(" ".join(path))
                 return
-                
-            for i in range(pos + 1, n + 1):
+            
+            for i in range(pos+1, n+1):
                 if s[pos : i] in words:
                     dfs(i, path + [s[pos : i]])
         
-        n = len(s)
-        words = set(wordDict)
         res = []
         dfs(0, [])
         return res
