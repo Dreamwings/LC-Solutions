@@ -24,7 +24,7 @@ class Solution:
         for i in range(n, -1, -1):
             if b[i]:
                 res += b[i]
-                if len(res) >= k:
-                    break
+            if len(res) >= k:
+                break
         
         return res[:k]
