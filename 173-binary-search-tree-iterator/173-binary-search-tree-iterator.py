@@ -9,23 +9,22 @@ class BSTIterator:
     from collections import deque
     
     def __init__(self, root: Optional[TreeNode]):
-        self.data = deque()
-        self.in_order(root)
-        
-    def in_order(self, node):
+        self.d = deque()
+        self.inorder(root)
+    
+    def inorder(self, node):
         if node:
-            self.in_order(node.left)
-            self.data.append(node.val)
-            self.in_order(node.right)
+            self.inorder(node.left)
+            self.d.append(node.val)
+            self.inorder(node.right)
 
     def next(self) -> int:
         if self.hasNext:
-            return self.data.popleft()
-            
-        
+            return self.d.popleft()        
 
     def hasNext(self) -> bool:
-        return len(self.data) > 0
+        return len(self.d) > 0
+        
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
