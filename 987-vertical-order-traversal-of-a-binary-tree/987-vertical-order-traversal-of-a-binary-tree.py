@@ -7,27 +7,29 @@
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         
+        from collections import defaultdict
+        
         if not root: return []
         
-        d = collections.defaultdict(list)
-        q = [(root, 0)]
+        d = defaultdict(list)
         res = []
+        q = [(root, 0)]
         
         while q:
             nxt = []
-            t = collections.defaultdict(list)
+            t = defaultdict(list)
             for node, i in q:
                 t[i].append(node.val)
                 if node.left:
-                    nxt.append((node.left, i - 1))
+                    nxt.append((node.left, i-1))
                 if node.right:
-                    nxt.append((node.right, i + 1))
-                
+                    nxt.append((node.right, i+1))
+            
             q = nxt
             for k, v in t.items():
                 d[k] += sorted(v)
-                
+        
         for k in sorted(d):
             res.append(d[k])
-            
+        
         return res
