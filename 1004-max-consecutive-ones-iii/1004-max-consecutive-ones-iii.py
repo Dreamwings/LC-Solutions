@@ -3,8 +3,8 @@ class Solution:
         
         i = 0
         
-        for j, x in enumerate(nums):
-            k -= (1 - x)
+        for j, v in enumerate(nums):
+            k -= (1 - v)
             if k < 0:
                 k += (1 - nums[i])
                 i += 1
