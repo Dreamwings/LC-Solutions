@@ -11,8 +11,9 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        from heapq import heapify, heappush, heappop
+        from heapq import heappush, heappop, heapify
         
+        # if not lists: return None
         hq = []
         
         for i, node in enumerate(lists):
@@ -20,15 +21,15 @@ class Solution(object):
                 heappush(hq, (node.val, i, node))
         
         dummy = ListNode(0)
-        curr = dummy
+        p = dummy
         
         while hq:
-            v, i, x = heappop(hq)
-            curr.next = x
-            curr = curr.next
-            
-            if x.next:
-                heappush(hq, (x.next.val, i, x.next))
+            v, i, node = heappop(hq)
+            p.next = node
+            p = p.next
+            if node.next:
+                heappush(hq, (node.next.val, i, node.next))
         
         return dummy.next
+            
         
