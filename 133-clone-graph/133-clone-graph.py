@@ -13,10 +13,9 @@ class Solution:
         
         if not node: return None
         
-        d = defaultdict(lambda: Node(0, None))
+        d = defaultdict(lambda: Node(0, []))
         root = Node(node.val, [])
         d[node.val] = root
-        
         q = [node]
         
         while q:
@@ -27,8 +26,9 @@ class Solution:
                 if y.val not in d:
                     q.append(y)
                     d[y.val] = Node(y.val, [])
-                    
+                
                 yc = d[y.val]
                 xc.neighbors.append(yc)
         
         return root
+        
