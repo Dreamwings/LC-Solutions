@@ -1,24 +1,26 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         
-        lo, hi = max(weights), sum(weights)
+        l, r = max(weights), sum(weights)
         
-        def meet(x):
+        def meet(w):
             cnt, s = 1, 0
             
-            for w in weights:
-                s += w
-                if s > x:
+            for x in weights:
+                s += x
+                if s > w:
                     cnt += 1
-                    s = w
+                    s = x
             
             return cnt <= days
         
-        while lo <= hi:
-            m = (lo + hi) >> 1
+        
+        while l <= r:
+            m = (l + r) >> 1
             if meet(m):
-                hi = m - 1
+                r = m - 1
             else:
-                lo = m + 1
-                
-        return lo
+                l = m + 1
+        
+        return r + 1
+                    
