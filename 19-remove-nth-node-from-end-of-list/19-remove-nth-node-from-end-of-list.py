@@ -13,7 +13,6 @@ class Solution(object):
         
         dummy = ListNode(0)
         dummy.next = head
-        
         fast = slow = dummy
         
         for _ in range(n):
@@ -25,6 +24,8 @@ class Solution(object):
         
         slow.next = slow.next.next
         return dummy.next
+        
+        
         # note that you should not return head because head might be removed.
         
         
