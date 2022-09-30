@@ -5,9 +5,9 @@ class Solution:
         seen = set()
         
         def dfs(x, y, prev):
-            
             if (x, y) in seen:
                 return True
+            
             seen.add((x, y))
             d = [(0, 1), (1, 0), (0, -1), (-1, 0)]
             
@@ -22,6 +22,5 @@ class Solution:
             for j in range(n):
                 if (i, j) not in seen and dfs(i, j, None):
                     return True
-                
-        return False    
         
+        return False
