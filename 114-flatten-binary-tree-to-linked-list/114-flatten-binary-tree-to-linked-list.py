@@ -25,6 +25,6 @@ class Solution:
                 p.left = None
             
             p = p.right
-                
+        
         return root
         
