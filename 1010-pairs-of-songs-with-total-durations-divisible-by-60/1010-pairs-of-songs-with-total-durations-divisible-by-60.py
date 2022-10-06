@@ -7,6 +7,22 @@ class Solution(object):
         
         from collections import Counter
         
+        ## S2:
+        
+        res, d = 0, Counter()
+        
+        for x in time:
+            y = -x % 60
+            res += d[y]
+            d[x % 60] += 1
+            
+        return res
+        
+        
+        """
+        
+        ## S1:
+        
         d = Counter()
         res = 0
         
@@ -20,3 +36,4 @@ class Solution(object):
         res += d[0] * (d[0] - 1) // 2 + d[30] * (d[30] - 1) // 2
         
         return res
+        """
