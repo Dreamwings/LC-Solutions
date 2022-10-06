@@ -5,6 +5,8 @@ class Solution(object):
         :rtype: bool
         """
         
+        ## S2: DFS Backtracking
+        
         s = sum(matchsticks)
         if s % 4: 
             return False
