@@ -1,72 +1,37 @@
-class Solution(object):
-    def makesquare(self, matchsticks):
-        """
-        :type matchsticks: List[int]
-        :rtype: bool
-        """
-        
-        ## S2: DFS Backtracking
+class Solution:
+    def makesquare(self, matchsticks: List[int]) -> bool:
         
         s = sum(matchsticks)
-        if s % 4: 
+        if s % 4:
             return False
         s, n = s // 4, len(matchsticks)
         
         a = sorted(matchsticks, reverse=True)
         if a[0] > s:
             return False
-        res = [0 for _ in range(4)]
-
-        def backtrack(k):
-            if k == n:
-                return s == res[0] == res[1] == res[2]
-
+        
+        edge = [0, 0, 0, 0]
+        
+        def dfs(pos):
+            if pos == n:
+                return s == edge[0] == edge[1] == edge[2] == edge[3]
+            
             for i in range(4):
-                if res[i] + a[k] <= s:
-                    res[i] += a[k]
-                    ret = backtrack(k + 1)
-                    if ret:
-                        return True
-                    res[i] -= a[k]
-
-                    if res[i] == 0:
-                        break
-
-            return False
-
-        return backtrack(0)
-        
-        """
-        ## S1: Time Limit Exceeded
-        
-        s = sum(matchsticks)
-        if s % 4: 
-            return False
-        s, n = s // 4, len(matchsticks)
-        
-        a = sorted(matchsticks, reverse=True)
-        if a[0] > s:
-            return False
-        
-        def dfs(i, s1, s2, s3, s4):
-            if i == n:
-                return s1 == s2 == s3 == s4 == s
+                if edge[i] + a[pos] > s:
+                    continue
+                edge[i] += a[pos]
+                if dfs(pos + 1):
+                    return True
                 
-            if s1 > s or s2 > s or s3 > s or s4 > s:
-                return False
+                # if not work out, do backtracking
+                edge[i] -= a[pos]
+                if edge[i] == 0:
+                    break
             
-            res = False
-            for k in range(4):
-                if k == 0:
-                    res = res or dfs(i+1, s1 + a[i], s2, s3, s4)
-                if k == 1:
-                    res = res or dfs(i+1, s1, s2 + a[i], s3, s4)
-                if k == 2:
-                    res = res or dfs(i+1, s1, s2, s3 + a[i], s4)
-                if k == 3:
-                    res = res or dfs(i+1, s1, s2, s3, s4 + a[i])
-            
-            return res
+            return False
         
-        return dfs(0, 0, 0, 0, 0)
-        """ 
+        return dfs(0)
+                
+                
+                
+        
