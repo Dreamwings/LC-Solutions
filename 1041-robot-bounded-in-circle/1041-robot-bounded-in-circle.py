@@ -10,7 +10,7 @@ class Solution(object):
         ## Time: O(N)
         ## Space: O(1)
         
-        x, y = 0, 0
+        x, y = (0, 0)
         dx, dy = (0, 1)  # initialize the original direction to face north
         
         for X in instructions:
