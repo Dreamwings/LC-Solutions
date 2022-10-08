@@ -12,8 +12,7 @@ class Solution(object):
         from bisect import bisect_left, insort
         
         res = []
-        a = []
-        # a is the sorted array
+        a = [] # a is to store the sorted elements from the right of nums
         
         for x in nums[::-1]:
             i = bisect_left(a, x) # this is the number of smaller elements to the right of x
