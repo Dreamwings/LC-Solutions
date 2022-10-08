@@ -6,6 +6,7 @@ class Solution:
         ## S2: Optimization of S1
         
         res = flips = Counter(s)['0']
+        # res = flips = s.count('0')
         
         for c in s:
             if c == '1':
