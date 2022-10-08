@@ -2,16 +2,14 @@ class Solution:
     def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
         
         from collections import Counter
-        from heapq import heappush, heappop
+        from heapq import heapify, heappop
         
         d = Counter(arr)
-        hq = []
-        
-        for key, v in d.items():
-            heappush(hq, (v, key))
+        hq = list(d.values())
+        heapify(hq)
         
         while k > 0:
-            v, _ = heappop(hq)
+            v = heappop(hq)
             k -= v
         
         if k == 0: return len(hq)
