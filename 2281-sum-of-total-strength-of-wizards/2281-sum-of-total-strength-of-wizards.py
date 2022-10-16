@@ -4,6 +4,11 @@ class Solution(object):
         :type strength: List[int]
         :rtype: int
         """
+        ## S1: 
+        ## https://leetcode.com/problems/sum-of-total-strength-of-wizards/discuss/2061985/JavaC%2B%2BPython-One-Pass-Solution
+        ## Time: O(N)
+        ## Space: O(N)
+        
         n = len(nums)
         M = 10 ** 9 + 7
         if n == 1:
@@ -37,25 +42,43 @@ class Solution(object):
         return res % M
         
         """
-        n = len(strength)
-        M = 10 ** 9 + 7
-        if n == 1: return strength[0] * strength[0] % M
-
-        res = 0
-        s, stack, acc = 0, [-1], [0]
-        strength.append(0)
-
-        for r, x in enumerate(strength):
-            s += x
-            acc.append(s + acc[-1])
-            while stack and strength[stack[-1]] > x:
-                i = stack.pop()
-                l = stack[-1]
-                lacc = acc[i] - acc[max(l, 0)]
-                racc = acc[r] - acc[i]
-                ln, rn = i - l, r - i
-                res += strength[i] * (racc * ln - lacc * rn) % M
-            stack.append(r)
+                
+        ## S2:
+        ## https://leetcode.cn/problems/sum-of-total-strength-of-wizards/solution/dan-diao-zhan-qian-zhui-he-de-qian-zhui-d9nki/
+        ## Time: O(N)
+        ## Space: O(N)
         
+        from itertools import accumulate
+        
+        n = len(nums)
+        M = 10 ** 9 + 7
+        if n == 1:
+            return nums[0] * nums[0] % M
+        
+        lmin = [-1] * n # lmin[i] is the nearest index for min val on the left of i, if doesn't exist, -1
+        rmin = [n] * n # rmin[i] is the nearest index for min val on the right of i, if doesn't exist, n
+        stack = []
+        
+        for i, x in enumerate(nums):
+            while stack and nums[stack[-1]] >= x:
+                j = stack.pop()
+                rmin[j] = i
+                if stack:
+                    lmin[i] = stack[-1]
+                stack.append(i)
+        
+        # presum of presum
+        ss = list(accumulate(accumulate(nums, initial=0), initial=0))
+        res = 0
+        
+        for i, x in enumerate(nums):
+            l, r = lmin[i], rmin[i]  # (l, r) both sides are open
+            s = (i - l) * (ss[r+1] - ss[i+1]) - (r - i) * (ss[i+1] - ss[l+1])
+            res += x * s
+            res %= M
+            
         return res % M
+        
+        
+        
         """
