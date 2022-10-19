@@ -12,16 +12,14 @@ class Solution:
             return inorder(node.left) + [node] + inorder(node.right)
         
         nodes = inorder(root)
-        n = len(nodes)
         
         def build_bst(l, r):
             if l > r: return None
             
-            m = (l + r) // 2
+            m = (l + r) >> 1
             root = nodes[m]
             root.left = build_bst(l, m - 1)
             root.right = build_bst(m + 1, r)
             return root
         
-        return build_bst(0, n - 1)
-            
+        return build_bst(0, len(nodes) - 1)
