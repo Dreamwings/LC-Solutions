@@ -1,9 +1,6 @@
-class Solution(object):
-    def totalStrength(self, nums):
-        """
-        :type strength: List[int]
-        :rtype: int
-        """
+class Solution:
+    def totalStrength(self, nums: List[int]) -> int:
+        
         ## S1: 
         ## https://leetcode.com/problems/sum-of-total-strength-of-wizards/discuss/2061985/JavaC%2B%2BPython-One-Pass-Solution
         ## Time: O(N)
@@ -41,8 +38,9 @@ class Solution(object):
             
         return res % M
         
+        
+        
         """
-                
         ## S2:
         ## 
         ## Time: O(N)
@@ -77,6 +75,5 @@ class Solution(object):
             ln, rn = i - l, r - i
             res += nums[i] * (racc * ln - lacc * rn)
         return res % M
-        
         
         """
