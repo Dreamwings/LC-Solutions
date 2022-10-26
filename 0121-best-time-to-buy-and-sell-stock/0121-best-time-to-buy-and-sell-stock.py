@@ -7,7 +7,7 @@ class Solution(object):
         
         m, res = prices[0], 0
         
-        for x in prices[1:]:
+        for x in prices:
             m = min(m, x)
             res = max(res, x - m)
         
