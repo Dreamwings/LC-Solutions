@@ -14,6 +14,21 @@ class Solution(object):
         :rtype: TreeNode
         """
         
+        ## S2:
+        
+        mi, ma = min(p.val, q.val), max(p.val, q.val)
+        
+        while root:
+            if ma < root.val:
+                root = root.left
+            elif mi > root.val:
+                root = root.right
+            else:
+                return root
+                
+        return None
+        
+        """
         ## S1:
         
         while root:
@@ -26,4 +41,4 @@ class Solution(object):
         
         return None
         
-        
+        """
